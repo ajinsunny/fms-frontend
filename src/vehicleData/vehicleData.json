@@ -1,0 +1,40 @@
+{
+    "vehicles": [
+      {
+        "id": 1,
+        "make": "Tesla",
+        "model": "Model S",
+        "year": 2022,
+        "status": "available"
+      },
+      {
+        "id": 2,
+        "make": "Ford",
+        "model": "F-150",
+        "year": 2020,
+        "status": "in use"
+      },
+      {
+        "id": 3,
+        "make": "Toyota",
+        "model": "Camry",
+        "year": 2021,
+        "status": "maintenance"
+      },
+      {
+        "id": 4,
+        "make": "Chevrolet",
+        "model": "Impala",
+        "year": 2019,
+        "status": "available"
+      },
+      {
+        "id": 5,
+        "make": "Audi",
+        "model": "Q5",
+        "year": 2022,
+        "status": "available"
+      }
+    ]
+  }
+  
