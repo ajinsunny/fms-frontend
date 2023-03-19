@@ -47,32 +47,13 @@ function Dashboard() {
           <AnimatePresence>
             {showEVUsageStatus && (
               <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.2 }}
+                initial={{ opacity: 0, scaleX: 0.1, scaleY: 0.1 }}
+                animate={{ opacity: 1, scaleX: 1, scaleY: 1 }}
+                exit={{ opacity: 0, scaleX: 0.1, scaleY: 0.1 }}
+                transition={{ duration: 0.5 }}
+                style={{ position: "absolute", top: 40, left: 20 }}
               >
-                <Modal
-                  show={showEVUsageStatus}
-                  onHide={() => setShowEVSystemHealth(false)}
-                  centered={true}
-                  size="xl"
-                >
-                  <Modal.Header closeButton>
-                    <Modal.Title>EV Usage</Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>
-                    <EVUsageStatus />
-                  </Modal.Body>
-                  <Modal.Footer>
-                    <Button
-                      variant="secondary"
-                      onClick={() => handleCloseEVUsageStatus()}
-                    >
-                      Close
-                    </Button>
-                  </Modal.Footer>
-                </Modal>
+                <EVUsageStatus />
               </motion.div>
             )}
           </AnimatePresence>
