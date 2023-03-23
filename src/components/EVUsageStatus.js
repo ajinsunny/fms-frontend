@@ -1,5 +1,6 @@
 import "./EVUsageStatus.css";
 import React, { useState, useEffect, useRef } from "react";
+import { useCallback } from "react";
 import * as d3 from "d3";
 import { Form, Dropdown } from "react-bootstrap";
 import { StatusIndicator } from "evergreen-ui";
@@ -10,7 +11,9 @@ const parseMonthNumber = timeFormat("%m");
 
 function EVUsageStatus(props) {
   const [selectedItem, setSelectedItem] = useState(null);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [vehicleSearchTerm, setVehicleSearchTerm] = useState("");
+  const [timeSearchTerm, setTimeSearchTerm] = useState("");
+
   const [data, setData] = useState(generateSampleData());
   const svgRef = useRef();
 
@@ -18,16 +21,16 @@ function EVUsageStatus(props) {
   const vehicleItems = ["Audi", "Chevrolet", "Toyota", "Ford", "Tesla"];
 
   const filteredTimeItems = timeItems.filter((item) =>
-    item.toLowerCase().includes(searchTerm.toLowerCase())
+    item.toLowerCase().includes(timeSearchTerm.toLowerCase())
   );
 
   const filteredVehicleItems = vehicleItems.filter((item) =>
-    item.toLowerCase().includes(searchTerm.toLowerCase())
+    item.toLowerCase().includes(vehicleSearchTerm.toLowerCase())
   );
 
   function generateSampleData() {
-    // Generate a range of dates for the past month
-    const dates = d3.timeDays(d3.timeMonth.floor(new Date()), new Date());
+    // Generate a range of dates for the entire year
+    const dates = d3.timeDays(d3.timeYear.floor(new Date()), new Date());
 
     // Generate random battery usage values for each date
     const usage = dates.map((date) => ({
@@ -43,108 +46,157 @@ function EVUsageStatus(props) {
   const width = 600 - margin.left - margin.right;
   const height = 400 - margin.top - margin.bottom;
 
-  function drawChart(selectedItem) {
-    if (!data) return;
+  const drawChart = useCallback(
+    (selectedItem) => {
+      if (!data) return;
 
-    // Clear the chart
-    const svg = d3.select(svgRef.current);
-    svg.selectAll("*").remove();
+      // Clear the chart
+      const svg = d3.select(svgRef.current);
+      svg.selectAll("*").remove();
 
-    // Draw the chart using D3.js
-    const g = svg
-      .append("g")
-      .attr("transform", `translate(${margin.left}, ${margin.top})`);
+      // Draw the chart using D3.js
+      const g = svg
+        .append("g")
+        .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-    // Parse the date/time
-    const parseTime = d3.timeParse("%Y-%m-%d");
+      // Set the ranges
+      const x = d3.scaleTime().range([0, width]);
+      const y = d3.scaleLinear().range([height, 0]);
 
-    // Set the ranges
-    const x = d3.scaleTime().range([0, width]);
-    const y = d3.scaleLinear().range([height, 0]);
+      // Define the line
+      const line = d3
+        .line()
+        .curve(d3.curveMonotoneX) // Add this line
+        .x((d) => x(d.date))
+        .y((d) => y(d.usage));
 
-    // Define the line
-    const line = d3
-      .line()
-      .curve(d3.curveMonotoneX) // Add this line
-      .x((d) => x(d.date))
-      .y((d) => y(d.usage));
+      // Format the data
+      const filteredData = data.usage
+        .map((d) => {
+          const date = d3.timeParse("%Y-%m-%d")(d.date);
+          return {
+            date,
+            usage: d.usage,
+          };
+        })
+        .filter((d) => {
+          if (selectedItem === "Weekly") {
+            const currentDate = new Date();
+            const pastMonth = d3.timeMonth.floor(currentDate);
+            return d.date >= pastMonth && d.date <= currentDate;
+          } else if (selectedItem === "Monthly") {
+            const currentDate = new Date();
+            const pastYear = d3.timeYear.floor(currentDate);
+            return d.date >= pastYear && d.date <= currentDate;
+          } else {
+            return true;
+          }
+        });
 
-    // Format the data
-    const usageData = data.usage.map((d) => ({
-      date: parseTime(d.date),
-      usage: d.usage,
-    }));
+      const aggregatedUsageData = (() => {
+        if (selectedItem === "Daily") {
+          return filteredData;
+        }
 
-    // Scale the range of the data
-    // Scale the range of the data
-    // Scale the range of the data
-    x.domain([
-      d3.timeDay.offset(
-        d3.min(usageData, (d) => d.date),
-        -1
-      ),
-      d3.timeDay.offset(
-        d3.max(usageData, (d) => d.date),
-        1
-      ),
-    ]);
+        const aggregatedData = new Map();
 
-    // Scale the range of the data
-    y.domain([
-      0,
-      d3.max(usageData, (d) => d.usage) * 1.05, // Add 5% padding to the y-axis domain
-    ]);
+        filteredData.forEach((d) => {
+          const key =
+            selectedItem === "Weekly"
+              ? `${d.date.getFullYear()}-${parseWeekNumber(d.date)}`
+              : `${d.date.getFullYear()}-${parseMonthNumber(d.date)}`;
 
-    // Add the line
-    g.append("path").data([usageData]).attr("class", "line").attr("d", line);
+          if (aggregatedData.has(key)) {
+            const { sum, count } = aggregatedData.get(key);
+            aggregatedData.set(key, { sum: sum + d.usage, count: count + 1 });
+          } else {
+            aggregatedData.set(key, { sum: d.usage, count: 1 });
+          }
+        });
 
-    // Add the x-axis
-    let xAxis = d3.axisBottom(x);
-    if (selectedItem === "Weekly") {
-      xAxis.tickFormat(d3.timeFormat("%U"));
-    } else if (selectedItem === "Monthly") {
-      xAxis.tickFormat(d3.timeFormat("%b %Y"));
-    }
-    svg
-      .append("g")
-      .attr("class", "x-axis")
-      .attr("transform", `translate(0, ${height})`)
-      .call(xAxis);
+        return Array.from(aggregatedData.entries()).map(
+          ([key, { sum, count }]) => {
+            const [year, num] = key.split("-");
+            const date =
+              selectedItem === "Weekly"
+                ? d3.timeWeek.floor(new Date(year, 0, 1)).setDate(num * 7)
+                : new Date(year, num - 1);
 
-    // Add the y-axis
-    const yAxis = d3.axisLeft(y);
-    svg
-      .append("g")
-      .attr("class", "y-axis")
-      .attr("transform", `translate(${margin.left}, ${margin.top})`)
-      .call(yAxis);
+            return {
+              date,
+              usage: sum / count,
+            };
+          }
+        );
+      })();
 
-    // Add x-axis label
-    const xAxisLabel =
-      selectedItem === "Weekly"
-        ? "Week Number"
-        : selectedItem === "Monthly"
-        ? "Month"
-        : "Date";
-    svg
-      .append("text")
-      .attr(
-        "transform",
-        `translate(${width / 2 + margin.left}, ${height + margin.top + 20})`
-      )
-      .style("text-anchor", "middle")
-      .text(xAxisLabel);
+      // Scale the range of the data
+      x.domain([
+        d3.timeDay.offset(
+          d3.min(aggregatedUsageData, (d) => d.date),
+          -1
+        ),
+        d3.timeDay.offset(
+          d3.max(aggregatedUsageData, (d) => d.date),
+          1
+        ),
+      ]);
 
-    // Add y-axis label
-    svg
-      .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", margin.left - 50)
-      .attr("x", -(height / 2))
-      .attr("dy", "1em")
-      .style("text-anchor", "middle")
-      .text("Usage");
-  }
+      y.domain([
+        0,
+        d3.max(aggregatedUsageData, (d) => d.usage) * 1.05, // Add 5% padding to the y-axis domain
+      ]);
+
+      // Add the line
+      g.append("path")
+        .data([aggregatedUsageData])
+        .attr("class", "line")
+        .attr("d", line);
+
+      // Add the x-axis
+      let xAxis = d3.axisBottom(x);
+      if (selectedItem === "Weekly") {
+        xAxis.tickFormat(d3.timeFormat("%U"));
+      } else if (selectedItem === "Monthly") {
+        xAxis.tickFormat(d3.timeFormat("%b %Y"));
+      }
+      g.append("g")
+        .attr("class", "x-axis")
+        .attr("transform", `translate(0, ${height})`)
+        .call(xAxis);
+
+      // Add the y-axis
+      const yAxis = d3.axisLeft(y);
+      g.append("g").attr("class", "y-axis").call(yAxis);
+
+      // Add x-axis label
+      const xAxisLabel =
+        selectedItem === "Weekly"
+          ? "Week Number"
+          : selectedItem === "Monthly"
+          ? "Month"
+          : "Date";
+      svg
+        .append("text")
+        .attr(
+          "transform",
+          `translate(${width / 2 + margin.left}, ${height + margin.top + 20})`
+        )
+        .style("text-anchor", "middle")
+        .text(xAxisLabel);
+
+      // Add y-axis label
+      svg
+        .append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", margin.left - 50)
+        .attr("x", -(height / 2))
+        .attr("dy", "1em")
+        .style("text-anchor", "middle")
+        .text("Usage");
+    },
+    [data]
+  );
 
   useEffect(() => {
     // Set sample data for D3.js chart
@@ -152,52 +204,22 @@ function EVUsageStatus(props) {
   }, []);
 
   useEffect(() => {
-    drawChart(selectedItem);
-  }, [data, selectedItem]);
+    if (selectedItem) {
+      drawChart(selectedItem);
+    }
+  }, [data, selectedItem, drawChart]);
 
   const handleSelect = (eventKey) => {
     // Handle selection of daily, weekly, or monthly view
     setSelectedItem(eventKey);
-
-    // Modify the chart data based on the selected view
-    if (eventKey === "Weekly") {
-      // Filter data to only include past month
-      const pastMonth = d3.timeDays(d3.timeMonth.floor(new Date()), new Date());
-      const weeklyUsage = pastMonth.reduce((acc, date) => {
-        // Group usage by week
-        const weekNumber = d3.timeFormat("%U")(date);
-        acc[weekNumber] = acc[weekNumber] || { date: date, usage: [] };
-        acc[weekNumber].usage.push(Math.floor(Math.random() * 100));
-        return acc;
-      }, {});
-      const usageData = Object.values(weeklyUsage).map((d) => ({
-        date: parseWeekNumber(d.date),
-        usage: d.usage.reduce((sum, val) => sum + val) / d.usage.length,
-      }));
-      setData({ usage: usageData });
-    } else if (eventKey === "Monthly") {
-      // Filter data to only include past year
-      const pastYear = d3.timeMonths(d3.timeYear.floor(new Date()), new Date());
-      const monthlyUsage = pastYear.reduce((acc, date) => {
-        // Group usage by month
-        const monthNumber = d3.timeFormat("%m")(date);
-        acc[monthNumber] = acc[monthNumber] || { date: date, usage: [] };
-        acc[monthNumber].usage.push(Math.floor(Math.random() * 100));
-        return acc;
-      }, {});
-      const usageData = Object.values(monthlyUsage).map((d) => ({
-        date: parseMonthNumber(d.date),
-        usage: d.usage.reduce((sum, val) => sum + val) / d.usage.length,
-      }));
-      setData({ usage: usageData });
-    } else {
-      // Use daily sample data
-      setData(generateSampleData());
-    }
   };
 
-  const handleSearch = (event) => {
-    setSearchTerm(event.target.value);
+  const handleVehicleSearch = (event) => {
+    setVehicleSearchTerm(event.target.value);
+  };
+
+  const handleTimeSearch = (event) => {
+    setTimeSearchTerm(event.target.value);
   };
 
   const [selectedVehicle, setSelectedVehicle] = useState(null);
@@ -218,8 +240,8 @@ function EVUsageStatus(props) {
             <Form.Control
               type="text"
               placeholder="Search..."
-              value={searchTerm}
-              onChange={handleSearch}
+              value={vehicleSearchTerm}
+              onChange={handleVehicleSearch}
             />
             {filteredVehicleItems.map((item, index) => (
               <Dropdown.Item key={index} eventKey={item}>
@@ -237,8 +259,8 @@ function EVUsageStatus(props) {
             <Form.Control
               type="text"
               placeholder="Search..."
-              value={searchTerm}
-              onChange={handleSearch}
+              value={timeSearchTerm}
+              onChange={handleTimeSearch}
             />
             {filteredTimeItems.map((item, index) => (
               <Dropdown.Item key={index} eventKey={item}>
