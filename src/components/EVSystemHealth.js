@@ -45,7 +45,9 @@ function EVSystemHealth(props) {
       <Form.Group>
         <Form.Label>Select an item:</Form.Label>
         <Dropdown onSelect={handleSelect}>
-          <Dropdown.Toggle>{selectedItem || "Select Item"}</Dropdown.Toggle>
+          <Dropdown.Toggle style={{ minWidth: "500px" }}>
+            {selectedItem || "Select Item"}
+          </Dropdown.Toggle>
           <Dropdown.Menu>
             <Form.Control
               type="text"
@@ -62,7 +64,6 @@ function EVSystemHealth(props) {
         </Dropdown>
       </Form.Group>
     </div>
-   
   );
 }
 
