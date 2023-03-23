@@ -4,20 +4,22 @@
   "description": "This is project for Fleet Management System",
   "main": "index.js",
   "dependencies": {
+    "@babel/core": "^7.12.3",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "d3": "^7.8.2",
+    "evergreen-ui": "^7.1.4",
     "framer-motion": "^10.6.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.2",
     "react-dom": "^18.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.3",
-    "web-vitals": "^1.0.1",
-    "@babel/core": "^7.12.3",
     "semver": "^5.7.1",
     "type-fest": "^0.21.3",
-    "typescript": "^5.0.2"
+    "typescript": "^5.0.2",
+    "web-vitals": "^1.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,0 +1,37 @@
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2.5px;
+}
+
+.x-axis,
+.y-axis {
+  font-size: 12px;
+  font-family: sans-serif;
+}
+
+.x-axis path,
+.y-axis path,
+.x-axis line,
+.y-axis line {
+  stroke: #aaa;
+}
+
+.x-axis text,
+.y-axis text {
+  fill: #333;
+}
+
+.chart-frame {
+  display: inline-block;
+  background-color: #f8f9fa; /* Frame background color */
+  border: 1px solid #dee2e6; /* Frame border color */
+  padding: 20px; /* Padding around the frame */
+  border-radius: 5px; /* Rounded corners for the frame */
+}
+
+.chart-container {
+  padding: 50px; /* Padding around the chart */
+  background-color: #ffffff; /* Chart background color */
+  border-radius: 5px; /* Rounded corners for the chart */
+}
