@@ -14,6 +14,23 @@ function Dashboard() {
   const [greeting, setGreeting] = useState("");
   const [emoji, setEmoji] = useState("");
 
+  const text = {
+    hidden: {
+      opacity: 0,
+      pathLength: 0,
+      fill: "rgba(255, 255, 255, 0)",
+      strokeDasharray: "0 1",
+      strokeDashoffset: "1",
+    },
+    visible: {
+      opacity: 1,
+      pathLength: 1,
+      fill: "rgba(255, 255, 255, 1)",
+      strokeDasharray: "1 0",
+      strokeDashoffset: "0",
+    },
+  };
+
   const renderCardContent = () => {
     switch (selectedCard) {
       case "evUsage":
@@ -41,14 +58,14 @@ function Dashboard() {
     let newEmoji = "";
 
     if (currentHour >= 5 && currentHour < 12) {
-      newGreeting = "Good morning";
-      newEmoji = "🌅";
+      newGreeting = "Good morning, Ajin! ";
+      newEmoji = " 🌅";
     } else if (currentHour >= 12 && currentHour < 18) {
-      newGreeting = "Good afternoon";
-      newEmoji = "🌤️";
+      newGreeting = "Good afternoon, Ajin! ";
+      newEmoji = " 🌤️";
     } else {
-      newGreeting = "Good evening";
-      newEmoji = "🌙";
+      newGreeting = "Good evening, Ajin!";
+      newEmoji = " 🌙";
     }
 
     setGreeting(newGreeting);
@@ -77,11 +94,51 @@ function Dashboard() {
   return (
     <div>
       <h1>
-        {greeting}, Ajin! {emoji}
+        {greeting.split("").map((char, index) => (
+          <motion.span
+            key={index}
+            variants={text}
+            initial="hidden"
+            animate="visible"
+            transition={{ delay: index * 0.03 + 0.1, duration: 0.01 }}
+          >
+            {char}
+          </motion.span>
+        ))}
+        {emoji.split("").map((char, index) => (
+          <motion.span
+            key={greeting.length + index}
+            variants={text}
+            initial="hidden"
+            animate="visible"
+            transition={{
+              delay: greeting.length * 0.01 + index * 0.01 + 0.5,
+              duration: 0.5,
+            }}
+          >
+            {char}
+          </motion.span>
+        ))}
         <br />
-        Your fleets are looking good!
-      </h1>
-
+        {"Your fleets are looking good!".split("").map((char, index) => (
+          <motion.span
+            key={greeting.length + emoji.length + index}
+            variants={text}
+            initial="hidden"
+            animate="visible"
+            transition={{
+              delay:
+                greeting.length * 0.001 +
+                emoji.length * 0.001 +
+                index * 0.01 +
+                0.5,
+              duration: 0.5,
+            }}
+          >
+            {char}
+          </motion.span>
+        ))}
+      </h1>{" "}
       <Row className="align-items-center" style={{ paddingBlock: "100px" }}>
         {cardItems.slice(0, 3).map((item) => (
           <Col key={item.id}>
@@ -100,7 +157,6 @@ function Dashboard() {
           </Col>
         ))}
       </Row>
-
       <Row className="align-items-center" style={{ paddingBlock: "100px" }}>
         {cardItems.slice(3, 6).map((item) => (
           <Col key={item.id}>
@@ -119,7 +175,6 @@ function Dashboard() {
           </Col>
         ))}
       </Row>
-
       <AnimatePresence>
         {selectedCard && (
           <motion.div
