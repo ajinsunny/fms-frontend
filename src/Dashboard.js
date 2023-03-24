@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Dashboard.css";
-import { Row, Col, Card } from "react-bootstrap";
+import { Container, Row, Col, Card } from "react-bootstrap";
 import { motion, AnimatePresence } from "framer-motion/dist/framer-motion";
 import EVUsageStatus from "./components/EVUsageStatus";
 import EVSystemHealth from "./components/EVSystemHealth";
@@ -17,10 +17,6 @@ function Dashboard() {
   const text = {
     hidden: {
       opacity: 0,
-      pathLength: 0,
-      fill: "rgba(255, 255, 255, 0)",
-      strokeDasharray: "0 1",
-      strokeDashoffset: "1",
     },
     visible: {
       opacity: 1,
@@ -139,42 +135,50 @@ function Dashboard() {
           </motion.span>
         ))}
       </h1>{" "}
-      <Row className="align-items-center" style={{ paddingBlock: "100px" }}>
-        {cardItems.slice(0, 3).map((item) => (
-          <Col key={item.id}>
-            <Card>
-              <motion.div layoutId={`card-${item.id}`}>
-                <Card.Body
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setSelectedCard(item.id);
-                  }}
-                >
-                  <Card.Title>{item.title}</Card.Title>
-                </Card.Body>
-              </motion.div>
-            </Card>
-          </Col>
-        ))}
-      </Row>
-      <Row className="align-items-center" style={{ paddingBlock: "100px" }}>
-        {cardItems.slice(3, 6).map((item) => (
-          <Col key={item.id}>
-            <Card>
-              <motion.div layoutId={`card-${item.id}`}>
-                <Card.Body
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setSelectedCard(item.id);
-                  }}
-                >
-                  <Card.Title>{item.title}</Card.Title>
-                </Card.Body>
-              </motion.div>
-            </Card>
-          </Col>
-        ))}
-      </Row>
+      <Container fluid>
+        <Row
+          className="align-items-center gx-2 gy-2"
+          style={{ paddingBlock: "100px" }}
+        >
+          {cardItems.slice(0, 3).map((item) => (
+            <Col key={item.id} xs={12} sm={6} md={4} lg={4} xl={4}>
+              <Card>
+                <motion.div layoutId={`card-${item.id}`}>
+                  <Card.Body
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedCard(item.id);
+                    }}
+                  >
+                    <Card.Title>{item.title}</Card.Title>
+                  </Card.Body>
+                </motion.div>
+              </Card>
+            </Col>
+          ))}
+        </Row>
+        <Row
+          className="align-items-center gx-2 gy-2" // Add gx-2 gy-2 here
+          style={{ paddingBlock: "100px" }}
+        >
+          {cardItems.slice(3, 6).map((item) => (
+            <Col key={item.id} xs={12} sm={6} md={4} lg={4} xl={4}>
+              <Card>
+                <motion.div layoutId={`card-${item.id}`}>
+                  <Card.Body
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedCard(item.id);
+                    }}
+                  >
+                    <Card.Title>{item.title}</Card.Title>
+                  </Card.Body>
+                </motion.div>
+              </Card>
+            </Col>
+          ))}
+        </Row>
+      </Container>
       <AnimatePresence>
         {selectedCard && (
           <motion.div
@@ -185,8 +189,8 @@ function Dashboard() {
             exit={{ opacity: 0 }}
             style={{
               position: "absolute",
-              top: "30%",
-              left: "30%",
+              top: "10%",
+              left: "10%",
               zIndex: 10,
               background: "white",
               padding: "2rem",
