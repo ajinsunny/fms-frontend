@@ -16,6 +16,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.3",
+    "react-select": "^5.7.2",
     "semver": "^5.7.1",
     "type-fest": "^0.21.3",
     "typescript": "^5.0.2",

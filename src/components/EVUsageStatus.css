@@ -22,12 +22,66 @@
   fill: #333;
 }
 
+.form-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-group > * {
+  margin-right: 16px;
+}
+
+.form-group > *:last-child {
+  margin-right: 0;
+}
+
+.form-group .select-container {
+  width: 50%;
+}
+
+.form-group .select-container.view {
+  width: calc(50% * 2 / 3);
+}
+
+.vehicle-select {
+  padding: 10px;
+  width: 100%;
+}
+
+.view-select {
+  padding: 10px;
+  width: 33%;
+}
+
 .chart-frame {
-  display: inline-block;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
   background-color: #f8f9fa; /* Frame background color */
   border: 1px solid #dee2e6; /* Frame border color */
   padding: 20px; /* Padding around the frame */
   border-radius: 5px; /* Rounded corners for the frame */
+}
+.card-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  width: 300px;
+  height: 300px;
+}
+
+.card-item {
+  margin-bottom: 1rem;
+}
+
+.card-item:last-child {
+  margin-bottom: 0;
 }
 
 .chart-container {

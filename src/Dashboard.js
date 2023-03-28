@@ -136,7 +136,10 @@ function Dashboard() {
         ))}
       </h1>{" "}
       <Container fluid>
-        <Row className="align-items-center gx-2 gy-2">
+        <Row
+          className="align-items-center gx-2 gy-2"
+          style={{ paddingBlock: "100px" }}
+        >
           {cardItems.slice(0, 3).map((item) => (
             <Col key={item.id} xs={12} sm={6} md={4} lg={4} xl={4}>
               <Card>
