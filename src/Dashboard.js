@@ -9,7 +9,7 @@ import RouteOptimization from "./components/RouteOptimization";
 import OperationsComms from "./components/OperationsComms";
 import FleetFeed from "./components/FleetFeed";
 
-function Dashboard() {
+function Dashboard({ user }) {
   const [selectedCard, setSelectedCard] = useState(null);
   const [greeting, setGreeting] = useState("");
   const [emoji, setEmoji] = useState("");
@@ -54,14 +54,20 @@ function Dashboard() {
     let newEmoji = "";
 
     if (currentHour >= 5 && currentHour < 12) {
-      newGreeting = "Good morning, Ajin! ";
+      newGreeting = "Good morning";
       newEmoji = " 🌅";
     } else if (currentHour >= 12 && currentHour < 18) {
-      newGreeting = "Good afternoon, Ajin! ";
+      newGreeting = "Good afternoon";
       newEmoji = " 🌤️";
     } else {
-      newGreeting = "Good evening, Ajin!";
+      newGreeting = "Good evening";
       newEmoji = " 🌙";
+    }
+
+    if (user) {
+      newGreeting = `${newGreeting}, ${user}!`;
+    } else {
+      newGreeting = `${newGreeting}!`;
     }
 
     setGreeting(newGreeting);
@@ -76,7 +82,7 @@ function Dashboard() {
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
-  }, [selectedCard]);
+  }, [selectedCard, user]);
 
   const cardItems = [
     { id: "evUsage", title: "EV Usage" },
