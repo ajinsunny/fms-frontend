@@ -9,7 +9,7 @@ import RouteOptimization from "./components/RouteOptimization";
 import OperationsComms from "./components/OperationsComms";
 import FleetFeed from "./components/FleetFeed";
 
-function Dashboard() {
+function Dashboard({ user }) {
   const [selectedCard, setSelectedCard] = useState(null);
   const [greeting, setGreeting] = useState("");
   const [emoji, setEmoji] = useState("");
@@ -54,14 +54,20 @@ function Dashboard() {
     let newEmoji = "";
 
     if (currentHour >= 5 && currentHour < 12) {
-      newGreeting = "Good morning, Ajin! ";
+      newGreeting = "Good morning";
       newEmoji = " 🌅";
     } else if (currentHour >= 12 && currentHour < 18) {
-      newGreeting = "Good afternoon, Ajin! ";
+      newGreeting = "Good afternoon";
       newEmoji = " 🌤️";
     } else {
-      newGreeting = "Good evening, Ajin!";
+      newGreeting = "Good evening";
       newEmoji = " 🌙";
+    }
+
+    if (user) {
+      newGreeting = `${newGreeting}, ${user}!`;
+    } else {
+      newGreeting = `${newGreeting}!`;
     }
 
     setGreeting(newGreeting);
@@ -76,7 +82,7 @@ function Dashboard() {
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
-  }, [selectedCard]);
+  }, [selectedCard, user]);
 
   const cardItems = [
     { id: "evUsage", title: "EV Usage" },
@@ -136,7 +142,10 @@ function Dashboard() {
         ))}
       </h1>{" "}
       <Container fluid>
-        <Row className="align-items-center gx-2 gy-2">
+        <Row
+          className="align-items-center gx-2 gy-2"
+          style={{ paddingBlock: "100px" }}
+        >
           {cardItems.slice(0, 3).map((item) => (
             <Col key={item.id} xs={12} sm={6} md={4} lg={4} xl={4}>
               <Card>
