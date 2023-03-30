@@ -61,7 +61,7 @@
   background-color: #f8f9fa; /* Frame background color */
   border: 1px solid #dee2e6; /* Frame border color */
   padding: 20px; /* Padding around the frame */
-  border-radius: 5px; /* Rounded corners for the frame */
+  border-radius: 15px; /* Rounded corners for the frame */
 }
 .card-info {
   display: flex;
@@ -71,7 +71,7 @@
   padding: 1rem;
   background-color: #fff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
+  border-radius: 15px;
   width: 300px;
   height: 300px;
 }
@@ -87,5 +87,9 @@
 .chart-container {
   padding: 50px; /* Padding around the chart */
   background-color: #ffffff; /* Chart background color */
-  border-radius: 5px; /* Rounded corners for the chart */
+  border-radius: 15px; /* Rounded corners for the chart */
+}
+
+.select__control {
+  border-radius: 25px !important;
 }
