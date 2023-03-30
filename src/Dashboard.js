@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "./Dashboard.css";
 import { Container, Row, Col, Card } from "react-bootstrap";
-import { motion, AnimatePresence } from "framer-motion/dist/framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import EVUsageStatus from "./components/EVUsageStatus";
 import EVSystemHealth from "./components/EVSystemHealth";
 import MaintanenceBehavior from "./components/MaintanenceBehavior";
 import RouteOptimization from "./components/RouteOptimization";
 import OperationsComms from "./components/OperationsComms";
 import FleetFeed from "./components/FleetFeed";
+import WeatherCard from "./components/WeatherCard";
 
 function Dashboard({ user }) {
   const [selectedCard, setSelectedCard] = useState(null);
@@ -95,56 +96,60 @@ function Dashboard({ user }) {
 
   return (
     <div>
-      <h1>
-        {greeting.split("").map((char, index) => (
-          <motion.span
-            key={index}
-            variants={text}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: index * 0.03 + 0.1, duration: 0.01 }}
-          >
-            {char}
-          </motion.span>
-        ))}
-        {emoji.split("").map((char, index) => (
-          <motion.span
-            key={greeting.length + index}
-            variants={text}
-            initial="hidden"
-            animate="visible"
-            transition={{
-              delay: greeting.length * 0.01 + index * 0.01 + 0.5,
-              duration: 0.5,
-            }}
-          >
-            {char}
-          </motion.span>
-        ))}
-        <br />
-        {"Your fleets are looking good!".split("").map((char, index) => (
-          <motion.span
-            key={greeting.length + emoji.length + index}
-            variants={text}
-            initial="hidden"
-            animate="visible"
-            transition={{
-              delay:
-                greeting.length * 0.001 +
-                emoji.length * 0.001 +
-                index * 0.01 +
-                0.5,
-              duration: 0.5,
-            }}
-          >
-            {char}
-          </motion.span>
-        ))}
-      </h1>{" "}
+      <div className="header-container">
+        <WeatherCard />
+        <h1 className="header-text">
+          {greeting.split("").map((char, index) => (
+            <motion.span
+              key={index}
+              variants={text}
+              initial="hidden"
+              animate="visible"
+              transition={{ delay: index * 0.03 + 0.1, duration: 0.01 }}
+            >
+              {char}
+            </motion.span>
+          ))}
+          {emoji.split("").map((char, index) => (
+            <motion.span
+              key={greeting.length + index}
+              variants={text}
+              initial="hidden"
+              animate="visible"
+              transition={{
+                delay: greeting.length * 0.01 + index * 0.01 + 0.5,
+                duration: 0.5,
+              }}
+            >
+              {char}
+            </motion.span>
+          ))}
+          <br />
+          {"Your fleets are looking good!".split("").map((char, index) => (
+            <motion.span
+              key={greeting.length + emoji.length + index}
+              variants={text}
+              initial="hidden"
+              animate="visible"
+              transition={{
+                delay:
+                  greeting.length * 0.001 +
+                  emoji.length * 0.001 +
+                  index * 0.01 +
+                  0.5,
+                duration: 0.5,
+              }}
+            >
+              {char}
+            </motion.span>
+          ))}
+        </h1>
+        <div style={{ flexGrow: 1 }} />
+      </div>{" "}
       <Container fluid>
         <Row
           className="align-items-center gx-2 gy-2"
-          style={{ paddingBlock: "100px" }}
+          style={{ paddingBlock: "50px" }}
         >
           {cardItems.slice(0, 3).map((item) => (
             <Col key={item.id} xs={12} sm={6} md={4} lg={4} xl={4}>
@@ -165,7 +170,7 @@ function Dashboard({ user }) {
         </Row>
         <Row
           className="align-items-center gx-2 gy-2" // Add gx-2 gy-2 here
-          style={{ paddingBlock: "100px" }}
+          style={{ paddingBlock: "50px" }}
         >
           {cardItems.slice(3, 6).map((item) => (
             <Col key={item.id} xs={12} sm={6} md={4} lg={4} xl={4}>

@@ -19,14 +19,19 @@ h1 {
 
 .card {
   border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
   width: 100%;
   margin-bottom: 1rem;
-  border: 1px solid #e4e4e4;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .card-title {
   font-weight: bold;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   font-size: 1.5rem;
   margin-bottom: 1rem;
   color: #292929;
@@ -58,7 +63,6 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Set this to the desired height */
 }
 
 /* Add these styles to change the color scheme */
@@ -73,4 +77,14 @@ h1 {
 
 .row {
   margin: 0;
+}
+
+.header-container {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+  margin-bottom: 1rem;
+  gap: 20rem;
 }
