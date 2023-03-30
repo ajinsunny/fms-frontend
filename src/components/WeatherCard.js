@@ -13,6 +13,7 @@ import "./WeatherCard.css";
 
 function WeatherCard() {
   const [weatherData, setWeatherData] = useState(null);
+  const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
 
   useEffect(() => {
     async function fetchWeatherData() {
@@ -26,7 +27,7 @@ function WeatherCard() {
             async (position) => {
               const { latitude, longitude } = position.coords;
               const response = await axios.get(
-                `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=2b7a774d491de1695c8066bedaf6022f&units=imperial`
+                `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=imperial`
               );
 
               setWeatherData(response.data);
