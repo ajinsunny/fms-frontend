@@ -149,7 +149,7 @@ function Dashboard({ user }) {
       <Container fluid>
         <Row
           className="align-items-center gx-2 gy-2"
-          style={{ paddingBlock: "50px" }}
+          // style={{ paddingBlock: "50px" }}
         >
           {cardItems.slice(0, 3).map((item) => (
             <Col key={item.id} xs={12} sm={6} md={4} lg={4} xl={4}>
@@ -167,11 +167,7 @@ function Dashboard({ user }) {
               </Card>
             </Col>
           ))}
-        </Row>
-        <Row
-          className="align-items-center gx-2 gy-2" // Add gx-2 gy-2 here
-          style={{ paddingBlock: "50px" }}
-        >
+
           {cardItems.slice(3, 6).map((item) => (
             <Col key={item.id} xs={12} sm={6} md={4} lg={4} xl={4}>
               <Card>
@@ -201,7 +197,7 @@ function Dashboard({ user }) {
             style={{
               position: "absolute",
               top: "10%",
-              left: "10%",
+              left: "20%",
               zIndex: 10,
               background: "white",
               padding: "2rem",
