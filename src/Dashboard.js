@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./Dashboard.css";
+import "./Sidebar.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+
 import { Container, Row, Col, Card } from "react-bootstrap";
 import { motion, AnimatePresence } from "framer-motion";
+import Sidebar from "react-sidebar";
+
 import EVUsageStatus from "./components/EVUsageStatus";
 import EVSystemHealth from "./components/EVSystemHealth";
 import MaintanenceBehavior from "./components/MaintanenceBehavior";
@@ -14,6 +20,11 @@ function Dashboard({ user }) {
   const [selectedCard, setSelectedCard] = useState(null);
   const [greeting, setGreeting] = useState("");
   const [emoji, setEmoji] = useState("");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
 
   const text = {
     hidden: {
@@ -96,6 +107,44 @@ function Dashboard({ user }) {
 
   return (
     <div>
+      <Sidebar
+        sidebar={
+          <div className="sidebar-menu">
+            <ul>
+              <li>
+                <h3>Dashboard</h3>
+              </li>
+              <li>
+                <h3>System Docs</h3>
+              </li>
+              <li>
+                <h3>Settings</h3>
+              </li>
+            </ul>
+          </div>
+        }
+        open={sidebarOpen}
+        onSetOpen={toggleSidebar}
+        styles={{
+          sidebar: {
+            background: "#292929",
+            padding: "4rem",
+            width: "400px",
+          },
+          overlay: {
+            background: "rgba(0, 0, 0, 0.5)",
+            zIndex: 999,
+          },
+          content: {
+            position: "relative",
+            overflow: "hidden",
+          },
+        }}
+      >
+        <div className="hamburger-menu" onClick={toggleSidebar}>
+          <FontAwesomeIcon icon={faBars} />
+        </div>
+      </Sidebar>
       <div className="header-container">
         <WeatherCard />
         <h1 className="header-text">
@@ -153,14 +202,14 @@ function Dashboard({ user }) {
         >
           {cardItems.slice(0, 3).map((item) => (
             <Col key={item.id} xs={12} sm={6} md={4} lg={4} xl={4}>
-              <Card>
+              <Card
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedCard(item.id);
+                }}
+              >
                 <motion.div layoutId={`card-${item.id}`}>
-                  <Card.Body
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setSelectedCard(item.id);
-                    }}
-                  >
+                  <Card.Body>
                     <Card.Title>{item.title}</Card.Title>
                   </Card.Body>
                 </motion.div>
@@ -170,14 +219,14 @@ function Dashboard({ user }) {
 
           {cardItems.slice(3, 6).map((item) => (
             <Col key={item.id} xs={12} sm={6} md={4} lg={4} xl={4}>
-              <Card>
+              <Card
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedCard(item.id);
+                }}
+              >
                 <motion.div layoutId={`card-${item.id}`}>
-                  <Card.Body
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setSelectedCard(item.id);
-                    }}
-                  >
+                  <Card.Body>
                     <Card.Title>{item.title}</Card.Title>
                   </Card.Body>
                 </motion.div>
