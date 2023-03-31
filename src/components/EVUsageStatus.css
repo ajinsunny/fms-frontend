@@ -7,7 +7,7 @@
 .x-axis,
 .y-axis {
   font-size: 12px;
-  font-family: sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 .x-axis path,
