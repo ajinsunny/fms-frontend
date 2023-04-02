@@ -93,3 +93,10 @@
 .select__control {
   border-radius: 25px !important;
 }
+
+.x-axis-tick-label {
+  transform: rotate(-45deg);
+  text-anchor: end;
+  dy: -4px;
+  dx: -10px;
+}
