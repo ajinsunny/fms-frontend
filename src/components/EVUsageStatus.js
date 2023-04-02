@@ -290,7 +290,7 @@ function EVUsageStatus(props) {
       </div>
       <div className="chart-frame">
         <div className="chart-container">
-          <p>Chart 1</p>
+          <p>Usage 5 hours ago</p>
           <svg
             ref={svgRef}
             width={width + margin.left + margin.right}
@@ -307,7 +307,7 @@ function EVUsageStatus(props) {
 
       <div className="chart-frame">
         <div className="chart-container">
-          <p>Chart 2</p>
+          <p>Daily | Weekly | Monthly</p>
           <svg
             ref={svgRef2}
             width={width2 + margin.left + margin.right}
