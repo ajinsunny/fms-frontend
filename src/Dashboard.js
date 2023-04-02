@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./Dashboard.css";
 import "./Sidebar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -21,6 +21,8 @@ function Dashboard({ user }) {
   const [greeting, setGreeting] = useState("");
   const [emoji, setEmoji] = useState("");
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const expandedCardRef = useRef(null);
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
@@ -85,7 +87,11 @@ function Dashboard({ user }) {
     setGreeting(newGreeting);
     setEmoji(newEmoji);
     const handleClickOutside = (event) => {
-      if (selectedCard && event.target.closest(".expanded-card") === null) {
+      if (
+        selectedCard &&
+        event.target.closest(".expanded-card") === null &&
+        !expandedCardRef.current.contains(event.target)
+      ) {
         setSelectedCard(null);
       }
     };
@@ -238,6 +244,7 @@ function Dashboard({ user }) {
       <AnimatePresence>
         {selectedCard && (
           <motion.div
+            ref={expandedCardRef}
             className="expanded-card"
             layoutId={`card-${selectedCard}`}
             initial={{ opacity: 0 }}

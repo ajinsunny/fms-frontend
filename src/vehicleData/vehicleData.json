@@ -1,40 +1,95 @@
 {
-    "vehicles": [
-      {
-        "id": 1,
-        "make": "Tesla",
-        "model": "Model S",
-        "year": 2022,
-        "status": "available"
-      },
-      {
-        "id": 2,
-        "make": "Ford",
-        "model": "F-150",
-        "year": 2020,
-        "status": "in use"
-      },
-      {
-        "id": 3,
-        "make": "Toyota",
-        "model": "Camry",
-        "year": 2021,
-        "status": "maintenance"
-      },
-      {
-        "id": 4,
-        "make": "Chevrolet",
-        "model": "Impala",
-        "year": 2019,
-        "status": "available"
-      },
-      {
-        "id": 5,
-        "make": "Audi",
-        "model": "Q5",
-        "year": 2022,
-        "status": "available"
-      }
-    ]
-  }
-  
+  "five_hour_usage": [
+    { "time": "12 pm", "percentage": 91 },
+    { "time": "1 pm", "percentage": 87 },
+    { "time": "2 pm", "percentage": 76 },
+    { "time": "3 pm", "percentage": 61 },
+    { "time": "4 pm", "percentage": 89 },
+    { "time": "5 pm", "percentage": 10 }
+  ],
+  "daily_battery_usage": [
+    { "time": "12 am", "percentage": 91 },
+    { "time": "1 am", "percentage": 82 },
+    { "time": "2 am", "percentage": 76 },
+    { "time": "3 am", "percentage": 71 },
+    { "time": "4 am", "percentage": 64 },
+    { "time": "5 am", "percentage": 57 },
+    { "time": "6 am", "percentage": 51 },
+    { "time": "7 am", "percentage": 45 },
+    { "time": "8 am", "percentage": 41 },
+    { "time": "9 am", "percentage": 36 },
+    { "time": "10 am", "percentage": 30 },
+    { "time": "11 am", "percentage": 26 },
+    { "time": "12 pm", "percentage": 22 },
+    { "time": "1 pm", "percentage": 17 },
+    { "time": "2 pm", "percentage": 12 },
+    { "time": "3 pm", "percentage": 8 },
+    { "time": "4 pm", "percentage": 3 },
+    { "time": "5 pm", "percentage": 1 },
+    { "time": "6 pm", "percentage": 5 },
+    { "time": "7 pm", "percentage": 11 },
+    { "time": "8 pm", "percentage": 16 },
+    { "time": "9 pm", "percentage": 22 },
+    { "time": "10 pm", "percentage": 27 },
+    { "time": "11 pm", "percentage": 33 }
+  ],
+  "weekly_battery_usage": [
+    { "day": "Mon", "percentage": 70 },
+    { "day": "Tue", "percentage": 55 },
+    { "day": "Wed", "percentage": 45 },
+    { "day": "Thu", "percentage": 80 },
+    { "day": "Fri", "percentage": 90 },
+    { "day": "Sat", "percentage": 40 },
+    { "day": "Sun", "percentage": 60 }
+  ],
+  "monthly_battery_usage": [
+    {
+      "month": "Jan",
+      "percentage": 80
+    },
+    {
+      "month": "Feb",
+      "percentage": 75
+    },
+    {
+      "month": "Mar",
+      "percentage": 65
+    },
+    {
+      "month": "Apr",
+      "percentage": 60
+    },
+    {
+      "month": "May",
+      "percentage": 55
+    },
+    {
+      "month": "June",
+      "percentage": 50
+    },
+    {
+      "month": "July",
+      "percentage": 45
+    },
+    {
+      "month": "Aug",
+      "percentage": 40
+    },
+    {
+      "month": "Sep",
+      "percentage": 35
+    },
+    {
+      "month": "Oct",
+      "percentage": 30
+    },
+    {
+      "month": "Nov",
+      "percentage": 25
+    },
+    {
+      "month": "Dec",
+      "percentage": 20
+    }
+  ]
+}
