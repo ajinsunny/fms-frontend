@@ -1,95 +1,796 @@
 {
-  "five_hour_usage": [
-    { "time": "12 pm", "percentage": 91 },
-    { "time": "1 pm", "percentage": 87 },
-    { "time": "2 pm", "percentage": 76 },
-    { "time": "3 pm", "percentage": 61 },
-    { "time": "4 pm", "percentage": 89 },
-    { "time": "5 pm", "percentage": 10 }
-  ],
-  "daily_battery_usage": [
-    { "time": "12 am", "percentage": 91 },
-    { "time": "1 am", "percentage": 82 },
-    { "time": "2 am", "percentage": 76 },
-    { "time": "3 am", "percentage": 71 },
-    { "time": "4 am", "percentage": 64 },
-    { "time": "5 am", "percentage": 57 },
-    { "time": "6 am", "percentage": 51 },
-    { "time": "7 am", "percentage": 45 },
-    { "time": "8 am", "percentage": 41 },
-    { "time": "9 am", "percentage": 36 },
-    { "time": "10 am", "percentage": 30 },
-    { "time": "11 am", "percentage": 26 },
-    { "time": "12 pm", "percentage": 22 },
-    { "time": "1 pm", "percentage": 17 },
-    { "time": "2 pm", "percentage": 12 },
-    { "time": "3 pm", "percentage": 8 },
-    { "time": "4 pm", "percentage": 3 },
-    { "time": "5 pm", "percentage": 1 },
-    { "time": "6 pm", "percentage": 5 },
-    { "time": "7 pm", "percentage": 11 },
-    { "time": "8 pm", "percentage": 16 },
-    { "time": "9 pm", "percentage": 22 },
-    { "time": "10 pm", "percentage": 27 },
-    { "time": "11 pm", "percentage": 33 }
-  ],
-  "weekly_battery_usage": [
-    { "day": "Mon", "percentage": 70 },
-    { "day": "Tue", "percentage": 55 },
-    { "day": "Wed", "percentage": 45 },
-    { "day": "Thu", "percentage": 80 },
-    { "day": "Fri", "percentage": 90 },
-    { "day": "Sat", "percentage": 40 },
-    { "day": "Sun", "percentage": 60 }
-  ],
-  "monthly_battery_usage": [
+  "vehicles": [
     {
-      "month": "Jan",
-      "percentage": 80
+      "id": 2394872937,
+      "name": "vehicle_2394872937",
+      "five_hour_usage": [
+        { "time": "12 pm", "percentage": 91 },
+        { "time": "1 pm", "percentage": 87 },
+        { "time": "2 pm", "percentage": 76 },
+        { "time": "3 pm", "percentage": 61 },
+        { "time": "4 pm", "percentage": 89 },
+        { "time": "5 pm", "percentage": 10 }
+      ],
+      "daily_battery_usage": [
+        { "time": "12 am", "percentage": 91 },
+        { "time": "1 am", "percentage": 82 },
+        { "time": "2 am", "percentage": 76 },
+        { "time": "3 am", "percentage": 71 },
+        { "time": "4 am", "percentage": 64 },
+        { "time": "5 am", "percentage": 57 },
+        { "time": "6 am", "percentage": 51 },
+        { "time": "7 am", "percentage": 45 },
+        { "time": "8 am", "percentage": 41 },
+        { "time": "9 am", "percentage": 36 },
+        { "time": "10 am", "percentage": 30 },
+        { "time": "11 am", "percentage": 26 },
+        { "time": "12 pm", "percentage": 22 },
+        { "time": "1 pm", "percentage": 17 },
+        { "time": "2 pm", "percentage": 12 },
+        { "time": "3 pm", "percentage": 8 },
+        { "time": "4 pm", "percentage": 3 },
+        { "time": "5 pm", "percentage": 1 },
+        { "time": "6 pm", "percentage": 5 },
+        { "time": "7 pm", "percentage": 11 },
+        { "time": "8 pm", "percentage": 16 },
+        { "time": "9 pm", "percentage": 22 },
+        { "time": "10 pm", "percentage": 27 },
+        { "time": "11 pm", "percentage": 33 }
+      ],
+      "weekly_battery_usage": [
+        { "day": "Mon", "percentage": 70 },
+        { "day": "Tue", "percentage": 55 },
+        { "day": "Wed", "percentage": 45 },
+        { "day": "Thu", "percentage": 80 },
+        { "day": "Fri", "percentage": 90 },
+        { "day": "Sat", "percentage": 40 },
+        { "day": "Sun", "percentage": 60 }
+      ],
+      "monthly_battery_usage": [
+        {
+          "month": "Jan",
+          "percentage": 80
+        },
+        {
+          "month": "Feb",
+          "percentage": 75
+        },
+        {
+          "month": "Mar",
+          "percentage": 65
+        },
+        {
+          "month": "Apr",
+          "percentage": 60
+        },
+        {
+          "month": "May",
+          "percentage": 55
+        },
+        {
+          "month": "June",
+          "percentage": 50
+        },
+        {
+          "month": "July",
+          "percentage": 45
+        },
+        {
+          "month": "Aug",
+          "percentage": 40
+        },
+        {
+          "month": "Sep",
+          "percentage": 35
+        },
+        {
+          "month": "Oct",
+          "percentage": 30
+        },
+        {
+          "month": "Nov",
+          "percentage": 25
+        },
+        {
+          "month": "Dec",
+          "percentage": 20
+        }
+      ]
+    },
+
+    {
+      "id": 9853676543,
+      "name": "vehicle_9853676543",
+      "five_hour_usage": [
+        { "time": "12 pm", "percentage": 12 },
+        { "time": "1 pm", "percentage": 84 },
+        { "time": "2 pm", "percentage": 38 },
+        { "time": "3 pm", "percentage": 6 },
+        { "time": "4 pm", "percentage": 79 },
+        { "time": "5 pm", "percentage": 93 }
+      ],
+      "daily_battery_usage": [
+        { "time": "12 am", "percentage": 56 },
+        { "time": "1 am", "percentage": 21 },
+        { "time": "2 am", "percentage": 87 },
+        { "time": "3 am", "percentage": 32 },
+        { "time": "4 am", "percentage": 10 },
+        { "time": "5 am", "percentage": 60 },
+        { "time": "6 am", "percentage": 52 },
+        { "time": "7 am", "percentage": 6 },
+        { "time": "8 am", "percentage": 71 },
+        { "time": "9 am", "percentage": 4 },
+        { "time": "10 am", "percentage": 33 },
+        { "time": "11 am", "percentage": 48 },
+        { "time": "12 pm", "percentage": 3 },
+        { "time": "1 pm", "percentage": 79 },
+        { "time": "2 pm", "percentage": 22 },
+        { "time": "3 pm", "percentage": 8 },
+        { "time": "4 pm", "percentage": 91 },
+        { "time": "5 pm", "percentage": 63 },
+        { "time": "6 pm", "percentage": 73 },
+        { "time": "7 pm", "percentage": 95 },
+        { "time": "8 pm", "percentage": 29 },
+        { "time": "9 pm", "percentage": 65 },
+        { "time": "10 pm", "percentage": 0 },
+        { "time": "11 pm", "percentage": 15 }
+      ],
+      "weekly_battery_usage": [
+        { "day": "Mon", "percentage": 95 },
+        { "day": "Tue", "percentage": 23 },
+        { "day": "Wed", "percentage": 69 },
+        { "day": "Thu", "percentage": 46 },
+        { "day": "Fri", "percentage": 61 },
+        { "day": "Sat", "percentage": 17 },
+        { "day": "Sun", "percentage": 32 }
+      ],
+      "monthly_battery_usage": [
+        { "month": "Jan", "percentage": 48 },
+        { "month": "Feb", "percentage": 3 },
+        { "month": "Mar", "percentage": 51 },
+        { "month": "Apr", "percentage": 92 },
+        { "month": "May", "percentage": 14 },
+        { "month": "June", "percentage": 28 },
+        { "month": "July", "percentage": 58 },
+        { "month": "Aug", "percentage": 96 },
+        { "month": "Sep", "percentage": 71 },
+        { "month": "Oct", "percentage": 22 },
+        { "month": "Nov", "percentage": 43 },
+        { "month": "Dec", "percentage": 20 }
+      ]
+    },
+
+    {
+      "id": 9854671543,
+      "name": "vehicle_9854671543",
+      "five_hour_usage": [
+        { "time": "12 pm", "percentage": 68 },
+        { "time": "1 pm", "percentage": 38 },
+        { "time": "2 pm", "percentage": 96 },
+        { "time": "3 pm", "percentage": 81 },
+        { "time": "4 pm", "percentage": 4 },
+        { "time": "5 pm", "percentage": 11 }
+      ],
+      "daily_battery_usage": [
+        { "time": "12 am", "percentage": 12 },
+        { "time": "1 am", "percentage": 33 },
+        { "time": "2 am", "percentage": 48 },
+        { "time": "3 am", "percentage": 89 },
+        { "time": "4 am", "percentage": 55 },
+        { "time": "5 am", "percentage": 74 },
+        { "time": "6 am", "percentage": 21 },
+        { "time": "7 am", "percentage": 18 },
+        { "time": "8 am", "percentage": 66 },
+        { "time": "9 am", "percentage": 42 },
+        { "time": "10 am", "percentage": 9 },
+        { "time": "11 am", "percentage": 27 },
+        { "time": "12 pm", "percentage": 92 },
+        { "time": "1 pm", "percentage": 73 },
+        { "time": "2 pm", "percentage": 62 },
+        { "time": "3 pm", "percentage": 71 },
+        { "time": "4 pm", "percentage": 52 },
+        { "time": "5 pm", "percentage": 1 },
+        { "time": "6 pm", "percentage": 16 },
+        { "time": "7 pm", "percentage": 35 },
+        { "time": "8 pm", "percentage": 80 },
+        { "time": "9 pm", "percentage": 96 },
+        { "time": "10 pm", "percentage": 51 },
+        { "time": "11 pm", "percentage": 43 }
+      ],
+      "weekly_battery_usage": [
+        { "day": "Mon", "percentage": 69 },
+        { "day": "Tue", "percentage": 5 },
+        { "day": "Wed", "percentage": 35 },
+        { "day": "Thu", "percentage": 82 },
+        { "day": "Fri", "percentage": 13 },
+        { "day": "Sat", "percentage": 79 },
+        { "day": "Sun", "percentage": 92 }
+      ],
+      "monthly_battery_usage": [
+        {
+          "month": "Jan",
+          "percentage": 19
+        },
+        {
+          "month": "Feb",
+          "percentage": 67
+        },
+        {
+          "month": "Mar",
+          "percentage": 24
+        },
+        {
+          "month": "Apr",
+          "percentage": 45
+        },
+        {
+          "month": "May",
+          "percentage": 87
+        },
+        {
+          "month": "June",
+          "percentage": 33
+        },
+        {
+          "month": "July",
+          "percentage": 58
+        },
+        {
+          "month": "Aug",
+          "percentage": 76
+        },
+        {
+          "month": "Sep",
+          "percentage": 35
+        },
+        {
+          "month": "Oct",
+          "percentage": 30
+        },
+        {
+          "month": "Nov",
+          "percentage": 25
+        },
+        {
+          "month": "Dec",
+          "percentage": 20
+        }
+      ]
+    },
+
+    {
+      "id": 9854616543,
+      "name": "vehicle_9854616543",
+      "five_hour_usage": [
+        { "time": "12 pm", "percentage": 53 },
+        { "time": "1 pm", "percentage": 78 },
+        { "time": "2 pm", "percentage": 92 },
+        { "time": "3 pm", "percentage": 67 },
+        { "time": "4 pm", "percentage": 34 },
+        { "time": "5 pm", "percentage": 23 }
+      ],
+      "daily_battery_usage": [
+        { "time": "12 am", "percentage": 89 },
+        { "time": "1 am", "percentage": 54 },
+        { "time": "2 am", "percentage": 74 },
+        { "time": "3 am", "percentage": 26 },
+        { "time": "4 am", "percentage": 41 },
+        { "time": "5 am", "percentage": 67 },
+        { "time": "6 am", "percentage": 80 },
+        { "time": "7 am", "percentage": 93 },
+        { "time": "8 am", "percentage": 48 },
+        { "time": "9 am", "percentage": 12 },
+        { "time": "10 am", "percentage": 85 },
+        { "time": "11 am", "percentage": 73 },
+        { "time": "12 pm", "percentage": 98 },
+        { "time": "1 pm", "percentage": 31 },
+        { "time": "2 pm", "percentage": 59 },
+        { "time": "3 pm", "percentage": 22 },
+        { "time": "4 pm", "percentage": 72 },
+        { "time": "5 pm", "percentage": 16 },
+        { "time": "6 pm", "percentage": 64 },
+        { "time": "7 pm", "percentage": 87 },
+        { "time": "8 pm", "percentage": 99 },
+        { "time": "9 pm", "percentage": 43 },
+        { "time": "10 pm", "percentage": 38 },
+        { "time": "11 pm", "percentage": 7 }
+      ],
+      "weekly_battery_usage": [
+        { "day": "Mon", "percentage": 29 },
+        { "day": "Tue", "percentage": 48 },
+        { "day": "Wed", "percentage": 67 },
+        { "day": "Thu", "percentage": 85 },
+        { "day": "Fri", "percentage": 12 },
+        { "day": "Sat", "percentage": 91 },
+        { "day": "Sun", "percentage": 6 }
+      ],
+      "monthly_battery_usage": [
+        { "month": "Jan", "percentage": 83 },
+        { "month": "Feb", "percentage": 15 },
+        { "month": "Mar", "percentage": 66 },
+        { "month": "Apr", "percentage": 19 },
+        { "month": "May", "percentage": 52 },
+        { "month": "June", "percentage": 78 },
+        { "month": "July", "percentage": 95 },
+        { "month": "Aug", "percentage": 42 },
+        { "month": "Sep", "percentage": 31 },
+        { "month": "Oct", "percentage": 71 },
+        { "month": "Nov", "percentage": 4 },
+        { "month": "Dec", "percentage": 20 }
+      ]
+    },
+
+    {
+      "id": 9854676541,
+      "name": "vehicle_9854676541",
+
+      "five_hour_usage": [
+        { "time": "12 am", "percentage": 32 },
+        { "time": "1 am", "percentage": 84 },
+        { "time": "2 am", "percentage": 50 },
+        { "time": "3 am", "percentage": 61 },
+        { "time": "4 am", "percentage": 77 },
+        { "time": "5 am", "percentage": 9 }
+      ],
+      "daily_battery_usage": [
+        { "time": "12 am", "percentage": 62 },
+        { "time": "1 am", "percentage": 12 },
+        { "time": "2 am", "percentage": 96 },
+        { "time": "3 am", "percentage": 80 },
+        { "time": "4 am", "percentage": 18 },
+        { "time": "5 am", "percentage": 40 },
+        { "time": "6 am", "percentage": 52 },
+        { "time": "7 am", "percentage": 71 },
+        { "time": "8 am", "percentage": 85 },
+        { "time": "9 am", "percentage": 93 },
+        { "time": "10 am", "percentage": 77 },
+        { "time": "11 am", "percentage": 23 },
+        { "time": "12 pm", "percentage": 54 },
+        { "time": "1 pm", "percentage": 32 },
+        { "time": "2 pm", "percentage": 44 },
+        { "time": "3 pm", "percentage": 89 },
+        { "time": "4 pm", "percentage": 73 },
+        { "time": "5 pm", "percentage": 67 },
+        { "time": "6 pm", "percentage": 20 },
+        { "time": "7 pm", "percentage": 10 },
+        { "time": "8 pm", "percentage": 27 },
+        { "time": "9 pm", "percentage": 38 },
+        { "time": "10 pm", "percentage": 46 },
+        { "time": "11 pm", "percentage": 50 }
+      ],
+      "weekly_battery_usage": [
+        { "day": "Mon", "percentage": 63 },
+        { "day": "Tue", "percentage": 88 },
+        { "day": "Wed", "percentage": 42 },
+        { "day": "Thu", "percentage": 56 },
+        { "day": "Fri", "percentage": 78 },
+        { "day": "Sat", "percentage": 93 },
+        { "day": "Sun", "percentage": 27 }
+      ],
+      "monthly_battery_usage": [
+        { "month": "Jan", "percentage": 71 },
+        { "month": "Feb", "percentage": 17 },
+        { "month": "Mar", "percentage": 82 },
+        { "month": "Apr", "percentage": 36 },
+        { "month": "May", "percentage": 58 },
+        { "month": "June", "percentage": 97 },
+        { "month": "July", "percentage": 46 },
+        { "month": "Aug", "percentage": 23 },
+        { "month": "Sep", "percentage": 80 },
+        { "month": "Oct", "percentage": 15 },
+        { "month": "Nov", "percentage": 67 },
+        { "month": "Dec", "percentage": 43 }
+      ]
     },
     {
-      "month": "Feb",
-      "percentage": 75
+      "id": 9854676443,
+      "name": "vehicle_9854676443",
+
+      "five_hour_usage": [
+        { "time": "12 pm", "percentage": 12 },
+        { "time": "1 pm", "percentage": 84 },
+        { "time": "2 pm", "percentage": 38 },
+        { "time": "3 pm", "percentage": 6 },
+        { "time": "4 pm", "percentage": 79 },
+        { "time": "5 pm", "percentage": 93 }
+      ],
+      "daily_battery_usage": [
+        { "time": "12 am", "percentage": 56 },
+        { "time": "1 am", "percentage": 21 },
+        { "time": "2 am", "percentage": 87 },
+        { "time": "3 am", "percentage": 32 },
+        { "time": "4 am", "percentage": 10 },
+        { "time": "5 am", "percentage": 60 },
+        { "time": "6 am", "percentage": 52 },
+        { "time": "7 am", "percentage": 6 },
+        { "time": "8 am", "percentage": 71 },
+        { "time": "9 am", "percentage": 4 },
+        { "time": "10 am", "percentage": 33 },
+        { "time": "11 am", "percentage": 48 },
+        { "time": "12 pm", "percentage": 3 },
+        { "time": "1 pm", "percentage": 79 },
+        { "time": "2 pm", "percentage": 22 },
+        { "time": "3 pm", "percentage": 8 },
+        { "time": "4 pm", "percentage": 91 },
+        { "time": "5 pm", "percentage": 63 },
+        { "time": "6 pm", "percentage": 73 },
+        { "time": "7 pm", "percentage": 95 },
+        { "time": "8 pm", "percentage": 29 },
+        { "time": "9 pm", "percentage": 65 },
+        { "time": "10 pm", "percentage": 0 },
+        { "time": "11 pm", "percentage": 15 }
+      ],
+      "weekly_battery_usage": [
+        { "day": "Mon", "percentage": 95 },
+        { "day": "Tue", "percentage": 23 },
+        { "day": "Wed", "percentage": 69 },
+        { "day": "Thu", "percentage": 46 },
+        { "day": "Fri", "percentage": 61 },
+        { "day": "Sat", "percentage": 17 },
+        { "day": "Sun", "percentage": 32 }
+      ],
+      "monthly_battery_usage": [
+        { "month": "Jan", "percentage": 48 },
+        { "month": "Feb", "percentage": 3 },
+        { "month": "Mar", "percentage": 51 },
+        { "month": "Apr", "percentage": 92 },
+        { "month": "May", "percentage": 14 },
+        { "month": "June", "percentage": 28 },
+        { "month": "July", "percentage": 58 },
+        { "month": "Aug", "percentage": 96 },
+        { "month": "Sep", "percentage": 71 },
+        { "month": "Oct", "percentage": 22 },
+        { "month": "Nov", "percentage": 43 },
+        { "month": "Dec", "percentage": 20 }
+      ]
+    },
+
+    {
+      "id": 985469654,
+      "name": "vehicle_985469654",
+
+      "five_hour_usage": [
+        { "time": "12 am", "percentage": 57 },
+        { "time": "1 am", "percentage": 93 },
+        { "time": "2 am", "percentage": 12 },
+        { "time": "3 am", "percentage": 84 },
+        { "time": "4 am", "percentage": 25 },
+        { "time": "5 am", "percentage": 41 }
+      ],
+      "daily_battery_usage": [
+        { "time": "12 am", "percentage": 73 },
+        { "time": "1 am", "percentage": 38 },
+        { "time": "2 am", "percentage": 8 },
+        { "time": "3 am", "percentage": 66 },
+        { "time": "4 am", "percentage": 92 },
+        { "time": "5 am", "percentage": 21 },
+        { "time": "6 am", "percentage": 59 },
+        { "time": "7 am", "percentage": 75 },
+        { "time": "8 am", "percentage": 3 },
+        { "time": "9 am", "percentage": 48 },
+        { "time": "10 am", "percentage": 10 },
+        { "time": "11 am", "percentage": 79 },
+        { "time": "12 pm", "percentage": 97 },
+        { "time": "1 pm", "percentage": 17 },
+        { "time": "2 pm", "percentage": 52 },
+        { "time": "3 pm", "percentage": 44 },
+        { "time": "4 pm", "percentage": 87 },
+        { "time": "5 pm", "percentage": 65 },
+        { "time": "6 pm", "percentage": 11 },
+        { "time": "7 pm", "percentage": 29 },
+        { "time": "8 pm", "percentage": 80 },
+        { "time": "9 pm", "percentage": 14 },
+        { "time": "10 pm", "percentage": 39 },
+        { "time": "11 pm", "percentage": 50 }
+      ],
+      "weekly_battery_usage": [
+        { "day": "Mon", "percentage": 27 },
+        { "day": "Tue", "percentage": 51 },
+        { "day": "Wed", "percentage": 76 },
+        { "day": "Thu", "percentage": 11 },
+        { "day": "Fri", "percentage": 92 },
+        { "day": "Sat", "percentage": 34 },
+        { "day": "Sun", "percentage": 68 }
+      ],
+      "monthly_battery_usage": [
+        { "month": "Jan", "percentage": 19 },
+        { "month": "Feb", "percentage": 81 },
+        { "month": "Mar", "percentage": 73 },
+        { "month": "Apr", "percentage": 40 },
+        { "month": "May", "percentage": 54 },
+        { "month": "June", "percentage": 91 },
+        { "month": "July", "percentage": 2 },
+        { "month": "Aug", "percentage": 47 },
+        { "month": "Sep", "percentage": 66 },
+        { "month": "Oct", "percentage": 31 },
+        { "month": "Nov", "percentage": 89 },
+        { "month": "Dec", "percentage": 20 }
+      ]
+    },
+
+    {
+      "id": 9854176543,
+      "name": "vehicle_9854176543",
+
+      "five_hour_usage": [
+        { "time": "12 am", "percentage": 78 },
+        { "time": "1 am", "percentage": 63 },
+        { "time": "2 am", "percentage": 41 },
+        { "time": "3 am", "percentage": 92 },
+        { "time": "4 am", "percentage": 14 },
+        { "time": "5 am", "percentage": 37 }
+      ],
+      "daily_battery_usage": [
+        { "time": "12 am", "percentage": 22 },
+        { "time": "1 am", "percentage": 5 },
+        { "time": "2 am", "percentage": 41 },
+        { "time": "3 am", "percentage": 71 },
+        { "time": "4 am", "percentage": 62 },
+        { "time": "5 am", "percentage": 88 },
+        { "time": "6 am", "percentage": 95 },
+        { "time": "7 am", "percentage": 79 },
+        { "time": "8 am", "percentage": 45 },
+        { "time": "9 am", "percentage": 36 },
+        { "time": "10 am", "percentage": 12 },
+        { "time": "11 am", "percentage": 79 },
+        { "time": "12 pm", "percentage": 54 },
+        { "time": "1 pm", "percentage": 38 },
+        { "time": "2 pm", "percentage": 20 },
+        { "time": "3 pm", "percentage": 45 },
+        { "time": "4 pm", "percentage": 68 },
+        { "time": "5 pm", "percentage": 81 },
+        { "time": "6 pm", "percentage": 55 },
+        { "time": "7 pm", "percentage": 45 },
+        { "time": "8 pm", "percentage": 25 },
+        { "time": "9 pm", "percentage": 5 },
+        { "time": "10 pm", "percentage": 70 },
+        { "time": "11 pm", "percentage": 88 }
+      ],
+      "weekly_battery_usage": [
+        { "day": "Mon", "percentage": 53 },
+        { "day": "Tue", "percentage": 75 },
+        { "day": "Wed", "percentage": 91 },
+        { "day": "Thu", "percentage": 18 },
+        { "day": "Fri", "percentage": 41 },
+        { "day": "Sat", "percentage": 65 },
+        { "day": "Sun", "percentage": 82 }
+      ],
+      "monthly_battery_usage": [
+        { "month": "Jan", "percentage": 30 },
+        { "month": "Feb", "percentage": 61 },
+        { "month": "Mar", "percentage": 87 },
+        { "month": "Apr", "percentage": 4 },
+        { "month": "May", "percentage": 22 },
+        { "month": "June", "percentage": 45 },
+        { "month": "July", "percentage": 63 },
+        { "month": "Aug", "percentage": 81 },
+        { "month": "Sep", "percentage": 95 },
+        { "month": "Oct", "percentage": 68 },
+        { "month": "Nov", "percentage": 51 },
+        { "month": "Dec", "percentage": 20 }
+      ]
     },
     {
-      "month": "Mar",
-      "percentage": 65
+      "id": 9854676546,
+      "name": "vehicle_9854676546",
+
+      "five_hour_usage": [
+        { "time": "12 am", "percentage": 28 },
+        { "time": "1 am", "percentage": 71 },
+        { "time": "2 am", "percentage": 43 },
+        { "time": "3 am", "percentage": 86 },
+        { "time": "4 am", "percentage": 12 },
+        { "time": "5 am", "percentage": 99 }
+      ],
+      "daily_battery_usage": [
+        { "time": "12 am", "percentage": 47 },
+        { "time": "1 am", "percentage": 52 },
+        { "time": "2 am", "percentage": 23 },
+        { "time": "3 am", "percentage": 88 },
+        { "time": "4 am", "percentage": 61 },
+        { "time": "5 am", "percentage": 10 },
+        { "time": "6 am", "percentage": 78 },
+        { "time": "7 am", "percentage": 99 },
+        { "time": "8 am", "percentage": 16 },
+        { "time": "9 am", "percentage": 67 },
+        { "time": "10 am", "percentage": 35 },
+        { "time": "11 am", "percentage": 71 },
+        { "time": "12 pm", "percentage": 56 },
+        { "time": "1 pm", "percentage": 3 },
+        { "time": "2 pm", "percentage": 79 },
+        { "time": "3 pm", "percentage": 21 },
+        { "time": "4 pm", "percentage": 40 },
+        { "time": "5 pm", "percentage": 96 },
+        { "time": "6 pm", "percentage": 62 },
+        { "time": "7 pm", "percentage": 7 },
+        { "time": "8 pm", "percentage": 87 },
+        { "time": "9 pm", "percentage": 50 },
+        { "time": "10 pm", "percentage": 95 },
+        { "time": "11 pm", "percentage": 32 }
+      ],
+      "weekly_battery_usage": [
+        { "day": "Mon", "percentage": 55 },
+        { "day": "Tue", "percentage": 90 },
+        { "day": "Wed", "percentage": 12 },
+        { "day": "Thu", "percentage": 76 },
+        { "day": "Fri", "percentage": 41 },
+        { "day": "Sat", "percentage": 62 },
+        { "day": "Sun", "percentage": 28 }
+      ],
+      "monthly_battery_usage": [
+        { "month": "Jan", "percentage": 61 },
+        { "month": "Feb", "percentage": 14 },
+        { "month": "Mar", "percentage": 77 },
+        { "month": "Apr", "percentage": 46 },
+        { "month": "May", "percentage": 2 },
+        { "month": "Jun", "percentage": 83 },
+        { "month": "Jul", "percentage": 95 },
+        { "month": "Aug", "percentage": 51 },
+        { "month": "Sep", "percentage": 24 },
+        { "month": "Oct", "percentage": 39 },
+        { "month": "Nov", "percentage": 69 },
+        { "month": "Dec", "percentage": 100 }
+      ]
     },
     {
-      "month": "Apr",
-      "percentage": 60
+      "id": 9854676533,
+      "name": "vehicle_9854676533",
+
+      "five_hour_usage": [
+        { "time": "12 pm", "percentage": 27 },
+        { "time": "1 pm", "percentage": 85 },
+        { "time": "2 pm", "percentage": 72 },
+        { "time": "3 pm", "percentage": 43 },
+        { "time": "4 pm", "percentage": 92 },
+        { "time": "5 pm", "percentage": 18 }
+      ],
+      "daily_battery_usage": [
+        { "time": "12 am", "percentage": 61 },
+        { "time": "1 am", "percentage": 47 },
+        { "time": "2 am", "percentage": 75 },
+        { "time": "3 am", "percentage": 36 },
+        { "time": "4 am", "percentage": 84 },
+        { "time": "5 am", "percentage": 23 },
+        { "time": "6 am", "percentage": 12 },
+        { "time": "7 am", "percentage": 56 },
+        { "time": "8 am", "percentage": 41 },
+        { "time": "9 am", "percentage": 72 },
+        { "time": "10 am", "percentage": 88 },
+        { "time": "11 am", "percentage": 30 },
+        { "time": "12 pm", "percentage": 63 },
+        { "time": "1 pm", "percentage": 80 },
+        { "time": "2 pm", "percentage": 18 },
+        { "time": "3 pm", "percentage": 95 },
+        { "time": "4 pm", "percentage": 9 },
+        { "time": "5 pm", "percentage": 50 },
+        { "time": "6 pm", "percentage": 67 },
+        { "time": "7 pm", "percentage": 77 },
+        { "time": "8 pm", "percentage": 25 },
+        { "time": "9 pm", "percentage": 55 },
+        { "time": "10 pm", "percentage": 14 },
+        { "time": "11 pm", "percentage": 99 }
+      ],
+      "weekly_battery_usage": [
+        { "day": "Mon", "percentage": 16 },
+        { "day": "Tue", "percentage": 81 },
+        { "day": "Wed", "percentage": 46 },
+        { "day": "Thu", "percentage": 59 },
+        { "day": "Fri", "percentage": 7 },
+        { "day": "Sat", "percentage": 99 },
+        { "day": "Sun", "percentage": 34 }
+      ],
+      "monthly_battery_usage": [
+        { "month": "Jan", "percentage": 55 },
+        { "month": "Feb", "percentage": 31 },
+        { "month": "Mar", "percentage": 82 },
+        { "month": "Apr", "percentage": 75 },
+        { "month": "May", "percentage": 19 },
+        { "month": "June", "percentage": 66 },
+        { "month": "July", "percentage": 12 },
+        { "month": "Aug", "percentage": 98 },
+        { "month": "Sep", "percentage": 43 },
+        { "month": "Oct", "percentage": 67 },
+        { "month": "Nov", "percentage": 6 },
+        { "month": "Dec", "percentage": 20 }
+      ]
     },
     {
-      "month": "May",
-      "percentage": 55
-    },
-    {
-      "month": "June",
-      "percentage": 50
-    },
-    {
-      "month": "July",
-      "percentage": 45
-    },
-    {
-      "month": "Aug",
-      "percentage": 40
-    },
-    {
-      "month": "Sep",
-      "percentage": 35
-    },
-    {
-      "month": "Oct",
-      "percentage": 30
-    },
-    {
-      "month": "Nov",
-      "percentage": 25
-    },
-    {
-      "month": "Dec",
-      "percentage": 20
+      "id": 9854676543,
+      "name": "vehicle_9854676543",
+
+      "five_hour_usage": [
+        { "time": "12 pm", "percentage": 91 },
+        { "time": "1 pm", "percentage": 87 },
+        { "time": "2 pm", "percentage": 76 },
+        { "time": "3 pm", "percentage": 61 },
+        { "time": "4 pm", "percentage": 89 },
+        { "time": "5 pm", "percentage": 10 }
+      ],
+      "daily_battery_usage": [
+        { "time": "12 am", "percentage": 91 },
+        { "time": "1 am", "percentage": 82 },
+        { "time": "2 am", "percentage": 76 },
+        { "time": "3 am", "percentage": 71 },
+        { "time": "4 am", "percentage": 64 },
+        { "time": "5 am", "percentage": 57 },
+        { "time": "6 am", "percentage": 51 },
+        { "time": "7 am", "percentage": 45 },
+        { "time": "8 am", "percentage": 41 },
+        { "time": "9 am", "percentage": 36 },
+        { "time": "10 am", "percentage": 30 },
+        { "time": "11 am", "percentage": 26 },
+        { "time": "12 pm", "percentage": 22 },
+        { "time": "1 pm", "percentage": 17 },
+        { "time": "2 pm", "percentage": 12 },
+        { "time": "3 pm", "percentage": 8 },
+        { "time": "4 pm", "percentage": 3 },
+        { "time": "5 pm", "percentage": 1 },
+        { "time": "6 pm", "percentage": 5 },
+        { "time": "7 pm", "percentage": 11 },
+        { "time": "8 pm", "percentage": 16 },
+        { "time": "9 pm", "percentage": 22 },
+        { "time": "10 pm", "percentage": 27 },
+        { "time": "11 pm", "percentage": 33 }
+      ],
+      "weekly_battery_usage": [
+        { "day": "Mon", "percentage": 70 },
+        { "day": "Tue", "percentage": 55 },
+        { "day": "Wed", "percentage": 45 },
+        { "day": "Thu", "percentage": 80 },
+        { "day": "Fri", "percentage": 90 },
+        { "day": "Sat", "percentage": 40 },
+        { "day": "Sun", "percentage": 60 }
+      ],
+      "monthly_battery_usage": [
+        {
+          "month": "Jan",
+          "percentage": 80
+        },
+        {
+          "month": "Feb",
+          "percentage": 75
+        },
+        {
+          "month": "Mar",
+          "percentage": 65
+        },
+        {
+          "month": "Apr",
+          "percentage": 60
+        },
+        {
+          "month": "May",
+          "percentage": 55
+        },
+        {
+          "month": "June",
+          "percentage": 50
+        },
+        {
+          "month": "July",
+          "percentage": 45
+        },
+        {
+          "month": "Aug",
+          "percentage": 40
+        },
+        {
+          "month": "Sep",
+          "percentage": 35
+        },
+        {
+          "month": "Oct",
+          "percentage": 30
+        },
+        {
+          "month": "Nov",
+          "percentage": 25
+        },
+        {
+          "month": "Dec",
+          "percentage": 20
+        }
+      ]
     }
   ]
 }

@@ -4,7 +4,7 @@ import Select from "react-select";
 import * as d3 from "d3";
 import { select } from "d3-selection";
 
-import data from "../vehicleData/vehicleData.json";
+import vehicleDataJson from "../vehicleData/vehicleData.json";
 
 import { Form, Card } from "react-bootstrap";
 import { StatusIndicator } from "evergreen-ui";
@@ -13,9 +13,10 @@ import { timeFormat } from "d3-time-format";
 function EVUsageStatus(props) {
   const [selectedItem, setSelectedItem] = useState("Daily");
 
-  // const [selectedVehicle, setSelectedVehicle] = useState(null);
+  const [selectedVehicle, setSelectedVehicle] = useState(null);
 
   const [jsonData, setJsonData] = useState();
+  const [vehicleItems, setVehicleItems] = useState([]);
 
   const svgRef = useRef();
   const svgRef2 = useRef();
@@ -27,16 +28,18 @@ function EVUsageStatus(props) {
   ];
 
   useEffect(() => {
-    setJsonData(data);
+    setJsonData(vehicleDataJson.vehicles);
   }, []);
 
-  // const vehicleItems = [
-  //   { value: "Audi", label: "Audi" },
-  //   { value: "Chevrolet", label: "Chevrolet" },
-  //   { value: "Toyota", label: "Toyota" },
-  //   { value: "Ford", label: "Ford" },
-  //   { value: "Tesla", label: "Tesla" },
-  // ];
+  useEffect(() => {
+    if (jsonData) {
+      const items = jsonData.map((vehicle) => ({
+        value: vehicle.id,
+        label: vehicle.name,
+      }));
+      setVehicleItems(items);
+    }
+  }, [jsonData]);
 
   function CardInfo({
     estimatedRange,
@@ -63,18 +66,24 @@ function EVUsageStatus(props) {
   }
 
   function filterData(view) {
+    if (!selectedVehicle) return [];
+
+    const vehicleData = jsonData.find(
+      (vehicle) => vehicle.id === selectedVehicle
+    );
+
     if (view === "Daily") {
-      return jsonData.daily_battery_usage.map((d) => ({
+      return vehicleData.daily_battery_usage.map((d) => ({
         ...d,
         xValue: d.time,
       }));
     } else if (view === "Weekly") {
-      return jsonData.weekly_battery_usage.map((d) => ({
+      return vehicleData.weekly_battery_usage.map((d) => ({
         ...d,
         xValue: d.day,
       }));
     } else if (view === "Monthly") {
-      return jsonData.monthly_battery_usage.map((d) => ({
+      return vehicleData.monthly_battery_usage.map((d) => ({
         ...d,
         xValue: d.month,
       }));
@@ -85,6 +94,10 @@ function EVUsageStatus(props) {
     if (!data) {
       return;
     }
+
+    d3.select(svg)
+      .selectAll(".x-axis, .y-axis, .line-path, .data-point")
+      .remove();
 
     const x = d3
       .scalePoint()
@@ -213,23 +226,26 @@ function EVUsageStatus(props) {
   }
 
   useEffect(() => {
-    if (jsonData) {
+    if (jsonData && selectedVehicle) {
+      const vehicleData = jsonData.find(
+        (vehicle) => vehicle.id === selectedVehicle
+      );
       drawChart1(
-        jsonData.five_hour_usage,
+        vehicleData.five_hour_usage,
         svgRef.current,
         width,
         height,
         margin
       );
     }
-  }, [jsonData]);
+  }, [jsonData, selectedVehicle]);
 
   useEffect(() => {
-    if (jsonData) {
+    if (jsonData && selectedVehicle) {
       const filteredData = filterData(selectedItem);
       drawChart2(filteredData, svgRef2.current, width2, height2, margin);
     }
-  }, [jsonData, selectedItem]);
+  }, [jsonData, selectedVehicle, selectedItem]);
 
   // Set the dimensions and margins of the chart
   const margin = { top: 10, right: 10, bottom: 20, left: 30 };
@@ -242,16 +258,16 @@ function EVUsageStatus(props) {
     setSelectedItem(selectedOption.value);
   };
 
-  // const handleSelectVehicle = (selectedOption) => {
-  //   setSelectedVehicle(selectedOption.value);
-  // };
+  const handleSelectVehicle = (selectedOption) => {
+    setSelectedVehicle(selectedOption.value);
+  };
 
   return (
     <div>
       <Form.Group>
         <Card.Title>EV Usage Status</Card.Title>
         <div className="select-container">
-          {/* <div onClick={(e) => e.stopPropagation()}>
+          <div onClick={(e) => e.stopPropagation()}>
             <Select
               value={vehicleItems.find(
                 (option) => option.value === selectedVehicle
@@ -262,7 +278,7 @@ function EVUsageStatus(props) {
               classNamePrefix="select"
               placeholder="Select Vehicle"
             />
-          </div> */}
+          </div>
 
           <div onClick={(e) => e.stopPropagation()}>
             <Select
@@ -273,6 +289,7 @@ function EVUsageStatus(props) {
               classNamePrefix="select"
               defaultValue={timeItems[0]}
               placeholder="Select View"
+              isDisabled={!selectedVehicle}
             />
           </div>
         </div>
