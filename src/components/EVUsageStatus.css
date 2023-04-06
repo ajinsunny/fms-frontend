@@ -85,11 +85,9 @@
 }
 
 .chart-container {
-  padding: 50px; /* Padding around the chart */
   text-align: center;
   background-color: #ffffff; /* Chart background color */
   border-radius: 15px; /* Rounded corners for the chart */
-  
 }
 
 .select__control {
@@ -101,4 +99,50 @@
   text-anchor: end;
   dy: -4px;
   dx: -10px;
+}
+
+/* Custom styles to replace Bootstrap */
+/* Custom styles to replace Bootstrap */
+.d-flex {
+  display: flex;
+  justify-content: center; /* Horizontally center the pill buttons */
+  align-items: center; /* Vertically center the pill buttons */
+  height: 100%; /* Make the container take full available height */
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25em 0.6em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 2;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 10rem;
+}
+
+.badge-pill {
+  padding-right: 3em;
+  padding-left: 3em;
+  border-radius: 10rem;
+}
+
+.badge-primary {
+  color: #fff;
+  background-color: #0069d9; /* Default background color for unclicked buttons */
+  cursor: pointer;
+}
+
+.badge-primary:hover {
+  background-color: #bcdcff; /* Background color for hover state */
+}
+
+.badge-primary:active,
+.active-pill {
+  background-color: #00b333; /* Background color for active (clicked) state */
+}
+
+.mr-2 {
+  margin-right: 0.5rem;
 }

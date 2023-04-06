@@ -2,6 +2,7 @@ import "./EVUsageStatus.css";
 import React, { useState, useEffect, useRef } from "react";
 import Select from "react-select";
 import * as d3 from "d3";
+
 import { select } from "d3-selection";
 
 import vehicleDataJson from "../vehicleData/vehicleData.json";
@@ -112,18 +113,43 @@ function EVUsageStatus(props) {
 
     const xAxis = (g) =>
       g
-        .attr("transform", `translate(0,${height - margin.bottom})`)
+        .attr("transform", `translate(10,${height - margin.bottom})`)
         .call(d3.axisBottom(x).tickSizeOuter(0))
         .selectAll("text")
         .attr("class", "x-axis-tick-label");
 
+    const xAxisLabel = d3.select(svg).select(".x-axis-label");
+    if (xAxisLabel.empty()) {
+      d3.select(svg)
+        .append("text")
+        .attr("class", "x-axis-label")
+        .attr("x", width / 2)
+        .attr("y", height - margin.bottom + 60)
+        .attr("fill", "currentColor")
+        .attr("text-anchor", "middle")
+        .text("Time");
+    }
+
     const yAxis = (g) =>
-      g.attr("transform", `translate(${margin.left},0)`).call(
+      g.attr("transform", `translate(${margin.left + 10},0)`).call(
         d3
           .axisLeft(y)
           .ticks(height / 80)
           .tickSizeOuter(0)
       );
+
+    const yAxisLabel = d3.select(svg).select(".y-axis-label");
+    if (yAxisLabel.empty()) {
+      d3.select(svg)
+        .append("text")
+        .attr("class", "y-axis-label")
+        .attr("x", -height / 2)
+        .attr("y", margin.left - 20)
+        .attr("fill", "currentColor")
+        .attr("text-anchor", "middle")
+        .attr("transform", "rotate(-90)")
+        .text("Percentage");
+    }
 
     const line = d3
       .line()
@@ -181,18 +207,44 @@ function EVUsageStatus(props) {
 
     const xAxis = (g) =>
       g
-        .attr("transform", `translate(0,${height - margin.bottom})`)
+        .attr("transform", `translate(10,${height - margin.bottom})`)
         .call(d3.axisBottom(x).tickSizeOuter(0))
         .selectAll("text")
         .attr("class", "x-axis-tick-label");
 
+    const xAxisLabel = d3.select(svg).select(".x-axis-label");
+    if (xAxisLabel.empty()) {
+      d3.select(svg)
+        .append("text")
+        .attr("class", "x-axis-label")
+        .attr("x", width / 2)
+        .attr("y", height - margin.bottom + 60)
+        .attr("fill", "currentColor")
+        .attr("text-anchor", "middle")
+        .text("Time");
+    }
+
     const yAxis = (g) =>
-      g.attr("transform", `translate(${margin.left},0)`).call(
+      g.attr("transform", `translate(${margin.left + 10},0)`).call(
         d3
           .axisLeft(y)
           .ticks(height / 80)
+          .tickSizeInner(-5)
           .tickSizeOuter(0)
       );
+
+    const yAxisLabel = d3.select(svg).select(".y-axis-label");
+    if (yAxisLabel.empty()) {
+      d3.select(svg)
+        .append("text")
+        .attr("class", "y-axis-label")
+        .attr("x", -height / 2)
+        .attr("y", margin.left - 20)
+        .attr("fill", "currentColor")
+        .attr("text-anchor", "middle")
+        .attr("transform", "rotate(-90)")
+        .text("Percentage");
+    }
 
     const line = d3
       .line()
@@ -248,10 +300,10 @@ function EVUsageStatus(props) {
   }, [jsonData, selectedVehicle, selectedItem]);
 
   // Set the dimensions and margins of the chart
-  const margin = { top: 10, right: 10, bottom: 20, left: 30 };
-  const width = 450 - margin.left - margin.right;
-  const width2 = 800 - margin.left - margin.right;
-  const height = 200 - margin.top - margin.bottom;
+  const margin = { top: 10, right: 1, bottom: 30, left: 50 };
+  const width = 550 - margin.left - margin.right;
+  const width2 = 900 - margin.left - margin.right;
+  const height = 250 - margin.top - margin.bottom;
   const height2 = 200 - margin.top - margin.bottom;
 
   const handleSelect = (selectedOption) => {
@@ -277,19 +329,6 @@ function EVUsageStatus(props) {
               className="basic-single vehicle-select"
               classNamePrefix="select"
               placeholder="Select Vehicle"
-            />
-          </div>
-
-          <div onClick={(e) => e.stopPropagation()}>
-            <Select
-              value={timeItems.find((option) => option.value === selectedItem)}
-              options={timeItems}
-              onChange={handleSelect}
-              className="basic-single view-select"
-              classNamePrefix="select"
-              defaultValue={timeItems[0]}
-              placeholder="Select View"
-              isDisabled={!selectedVehicle}
             />
           </div>
         </div>
@@ -324,7 +363,33 @@ function EVUsageStatus(props) {
 
       <div className="chart-frame">
         <div className="chart-container">
-          <p>Daily | Weekly | Monthly</p>
+          <div className="d-flex">
+            <span
+              className={`badge badge-pill badge-primary mr-2 ${
+                selectedItem === "Daily" ? "active-pill" : ""
+              }`}
+              onClick={() => handleSelect({ value: "Daily" })}
+            >
+              Daily
+            </span>
+            <span
+              className={`badge badge-pill badge-primary mr-2 ${
+                selectedItem === "Weekly" ? "active-pill" : ""
+              }`}
+              onClick={() => handleSelect({ value: "Weekly" })}
+            >
+              Weekly
+            </span>
+            <span
+              className={`badge badge-pill badge-primary ${
+                selectedItem === "Monthly" ? "active-pill" : ""
+              }`}
+              onClick={() => handleSelect({ value: "Monthly" })}
+            >
+              Monthly
+            </span>
+          </div>
+
           <svg
             ref={svgRef2}
             width={width2 + margin.left + margin.right}
