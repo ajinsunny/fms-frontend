@@ -3,13 +3,10 @@ import React, { useState, useEffect, useRef } from "react";
 import Select from "react-select";
 import * as d3 from "d3";
 
-import { select } from "d3-selection";
-
 import vehicleDataJson from "../vehicleData/vehicleData.json";
 
 import { Form, Card } from "react-bootstrap";
 import { StatusIndicator } from "evergreen-ui";
-import { timeFormat } from "d3-time-format";
 
 function EVUsageStatus(props) {
   const [selectedItem, setSelectedItem] = useState("Daily");
@@ -21,12 +18,6 @@ function EVUsageStatus(props) {
 
   const svgRef = useRef();
   const svgRef2 = useRef();
-
-  const timeItems = [
-    { value: "Daily", label: "Daily" },
-    { value: "Weekly", label: "Weekly" },
-    { value: "Monthly", label: "Monthly" },
-  ];
 
   useEffect(() => {
     setJsonData(vehicleDataJson.vehicles);
@@ -97,7 +88,7 @@ function EVUsageStatus(props) {
     }
 
     d3.select(svg)
-      .selectAll(".x-axis, .y-axis, .line-path, .data-point")
+      .selectAll(".x-axis, .y-axis, .line-path, .data-point, .area-path")
       .remove();
 
     const x = d3
@@ -154,7 +145,15 @@ function EVUsageStatus(props) {
     const line = d3
       .line()
       .x((d) => x(d.time))
-      .y((d) => y(d.percentage));
+      .y((d) => y(d.percentage))
+      .curve(d3.curveMonotoneX);
+
+    const area = d3
+      .area()
+      .x((d) => x(d.time))
+      .y0(y(0))
+      .y1((d) => y(d.percentage))
+      .curve(d3.curveMonotoneX);
 
     // Add the x-axis and y-axis groups to the SVG element
     const xAxisGroup = d3.select(svg).append("g").attr("class", "x-axis");
@@ -172,6 +171,14 @@ function EVUsageStatus(props) {
       .attr("stroke", "steelblue")
       .attr("stroke-width", 1.5)
       .attr("d", line);
+
+    d3.select(svg)
+      .append("path")
+      .datum(data)
+      .attr("class", "area-path")
+      .attr("fill", "steelblue")
+      .attr("opacity", 0.2)
+      .attr("d", area);
 
     // Add the points to the SVG element
     const points = d3.select(svg).selectAll(".data-point").data(data);
@@ -193,6 +200,7 @@ function EVUsageStatus(props) {
     if (!data) {
       return;
     }
+    d3.select(svg).selectAll(".area-path").remove();
 
     const x = d3
       .scalePoint()
@@ -249,10 +257,33 @@ function EVUsageStatus(props) {
     const line = d3
       .line()
       .x((d) => x(d.xValue))
-      .y((d) => y(d.percentage));
+      .y((d) => y(d.percentage))
+      .curve(d3.curveMonotoneX);
+
+    const area = d3
+      .area()
+      .x((d) => x(d.xValue))
+      .y0(y(0))
+      .y1((d) => y(d.percentage))
+      .curve(d3.curveMonotoneX);
+
+    d3.select(svg)
+      .append("path")
+      .datum(data)
+      .attr("class", "area-path")
+      .attr("fill", "steelblue")
+      .attr("opacity", 0.2)
+      .attr("d", area);
 
     d3.select(svg).select(".x-axis").call(xAxis);
     d3.select(svg).select(".y-axis").call(yAxis);
+
+    const areaPath = d3.select(svg).select(".area-path");
+    areaPath
+      .datum(data)
+      .attr("fill", "steelblue")
+      .attr("opacity", 0.2)
+      .attr("d", area);
 
     const path = d3.select(svg).select(".line-path");
     path
@@ -335,15 +366,21 @@ function EVUsageStatus(props) {
       </Form.Group>
       <div
         style={{
-          justifyContent: "space-around",
+          display: "flex",
+          justifyContent: "space-between",
           marginTop: 16,
         }}
       >
-        <StatusIndicator color="success" />
-        <span style={{ marginRight: 8 }}>Vehicle Status</span>
-        <StatusIndicator color="danger" />{" "}
-        <span style={{ marginLeft: 8 }}>Network Status</span>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <StatusIndicator color="success" />
+          <span style={{ marginLeft: 4 }}>Vehicle Status</span>
+        </div>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <StatusIndicator color="danger" />
+          <span style={{ marginLeft: 4 }}>Network Status</span>
+        </div>
       </div>
+
       <div className="chart-frame">
         <div className="chart-container">
           <p>Usage 5 hours ago</p>
