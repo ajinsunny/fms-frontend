@@ -237,12 +237,11 @@ function Dashboard({ user }) {
                     variant="top"
                     src={snapshots[item.id] || ""}
                     style={{
-                      objectFit: "cover",
-                      height: "200px",
+                      objectFit: "contain",
+                      height: "300px",
+                      width: "400px",
                     }}
                   />
-
-                  
                 </motion.div>
               </Card>
             </Col>
@@ -266,14 +265,11 @@ function Dashboard({ user }) {
                     variant="top"
                     src={snapshots[item.id] || ""}
                     style={{
-                      objectFit: "cover",
-                      height: "200px",
+                      objectFit: "contain",
+                      height: "300px",
+                      width: "400px",
                     }}
                   />
-
-                  <Card.Body>
-                    <Card.Title>{item.title}</Card.Title>
-                  </Card.Body>
                 </motion.div>
               </Card>
             </Col>
