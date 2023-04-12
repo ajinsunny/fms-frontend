@@ -15,6 +15,7 @@
     "d3-collection": "^1.0.7",
     "evergreen-ui": "^7.1.4",
     "framer-motion": "^10.6.0",
+    "html2canvas": "^1.4.1",
     "mdb-react-ui-kit": "^6.0.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.2",

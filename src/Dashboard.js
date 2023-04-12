@@ -7,6 +7,7 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import { motion, AnimatePresence } from "framer-motion";
 import Sidebar from "react-sidebar";
+import html2canvas from "html2canvas";
 
 import EVUsageStatus from "./components/EVUsageStatus";
 import EVSystemHealth from "./components/EVSystemHealth";
@@ -21,11 +22,23 @@ function Dashboard({ user }) {
   const [greeting, setGreeting] = useState("");
   const [emoji, setEmoji] = useState("");
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [snapshots, setSnapshots] = useState({});
 
   const expandedCardRef = useRef(null);
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
+  };
+
+  const takeSnapshot = async (cardId) => {
+    const cardElement = document.querySelector(`#card-${cardId}`);
+    const expandedCardElement = document.querySelector(".expanded-card");
+
+    if (expandedCardElement) {
+      const canvas = await html2canvas(expandedCardElement);
+      const snapshot = canvas.toDataURL();
+      setSnapshots((prevState) => ({ ...prevState, [cardId]: snapshot }));
+    }
   };
 
   const text = {
@@ -92,6 +105,7 @@ function Dashboard({ user }) {
         event.target.closest(".expanded-card") === null &&
         !expandedCardRef.current.contains(event.target)
       ) {
+        takeSnapshot(selectedCard);
         setSelectedCard(null);
       }
     };
@@ -211,13 +225,24 @@ function Dashboard({ user }) {
               <Card
                 onClick={(e) => {
                   e.stopPropagation();
-                  setSelectedCard(item.id);
+                  if (selectedCard === item.id) {
+                    takeSnapshot(item.id);
+                  }
+                  setSelectedCard(item.id === selectedCard ? null : item.id);
                 }}
               >
                 <motion.div layoutId={`card-${item.id}`}>
-                  <Card.Body>
-                    <Card.Title>{item.title}</Card.Title>
-                  </Card.Body>
+                  <Card.Img
+                    className="card-snapshot"
+                    variant="top"
+                    src={snapshots[item.id] || ""}
+                    style={{
+                      objectFit: "cover",
+                      height: "200px",
+                    }}
+                  />
+
+                  
                 </motion.div>
               </Card>
             </Col>
@@ -228,10 +253,24 @@ function Dashboard({ user }) {
               <Card
                 onClick={(e) => {
                   e.stopPropagation();
-                  setSelectedCard(item.id);
+                  if (selectedCard === item.id) {
+                    takeSnapshot(item.id);
+                    console.log("Taking snapshot for card:", item.id);
+                  }
+                  setSelectedCard(item.id === selectedCard ? null : item.id);
                 }}
               >
                 <motion.div layoutId={`card-${item.id}`}>
+                  <Card.Img
+                    className="card-snapshot"
+                    variant="top"
+                    src={snapshots[item.id] || ""}
+                    style={{
+                      objectFit: "cover",
+                      height: "200px",
+                    }}
+                  />
+
                   <Card.Body>
                     <Card.Title>{item.title}</Card.Title>
                   </Card.Body>
