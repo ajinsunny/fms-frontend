@@ -20,9 +20,28 @@ import WeatherCard from "./components/WeatherCard";
 function Dashboard({ user }) {
   const [selectedCard, setSelectedCard] = useState(null);
   const [greeting, setGreeting] = useState("");
+  const [greetingPhrase, setGreetingPhrase] = useState("");
   const [emoji, setEmoji] = useState("");
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [snapshots, setSnapshots] = useState({});
+
+  const greetings = [
+    "Fleets achieving top performance!",
+    "Your fleets are looking good!",
+    "Your fleets are thriving!",
+    "Fleets driving to excellence!",
+    "Remarkable fleet progress!",
+    "Efficient fleets, smooth rides!",
+    "Fleets navigating with ease!",
+    "Mastery in fleet management!",
+    "Fleets cruising to success!",
+    "Your fleets are unstoppable!",
+    "Fleets conquering the roads!",
+  ];
+
+  const getRandomGreeting = () => {
+    return greetings[Math.floor(Math.random() * greetings.length)];
+  };
 
   const expandedCardRef = useRef(null);
 
@@ -79,6 +98,9 @@ function Dashboard({ user }) {
 
     let newGreeting = "";
     let newEmoji = "";
+
+    const randomGreeting = getRandomGreeting();
+    setGreetingPhrase(randomGreeting);
 
     if (currentHour >= 5 && currentHour < 12) {
       newGreeting = "Good morning";
@@ -194,24 +216,19 @@ function Dashboard({ user }) {
             </motion.span>
           ))}
           <br />
-          {"Your fleets are looking good!".split("").map((char, index) => (
-            <motion.span
-              key={greeting.length + emoji.length + index}
-              variants={text}
-              initial="hidden"
-              animate="visible"
-              transition={{
-                delay:
-                  greeting.length * 0.001 +
-                  emoji.length * 0.001 +
-                  index * 0.01 +
-                  0.5,
-                duration: 0.5,
-              }}
-            >
-              {char}
-            </motion.span>
-          ))}
+          {/* Replace the previous greetingPhrase mapping code with this: */}
+          <motion.span
+            key={greeting.length + emoji.length}
+            variants={text}
+            initial="hidden"
+            animate="visible"
+            transition={{
+              delay: greeting.length * 0.001 + emoji.length * 0.001 + 0.5,
+              duration: 0.5,
+            }}
+          >
+            {greetingPhrase}
+          </motion.span>
         </h1>
         <div style={{ flexGrow: 1 }} />
       </div>{" "}
@@ -232,16 +249,23 @@ function Dashboard({ user }) {
                 }}
               >
                 <motion.div layoutId={`card-${item.id}`}>
-                  <Card.Img
-                    className="card-snapshot"
-                    variant="top"
-                    src={snapshots[item.id] || ""}
-                    style={{
-                      objectFit: "contain",
-                      height: "300px",
-                      width: "400px",
-                    }}
-                  />
+                  {snapshots[item.id] ? (
+                    <Card.Img
+                      className="card-snapshot"
+                      variant="top"
+                      src={snapshots[item.id]}
+                      style={{
+                        objectFit: "contain",
+                        height: "300px",
+                        width: "400px",
+                        backgroundColor: "transparent",
+                      }}
+                    />
+                  ) : (
+                    <Card.Body>
+                      <Card.Title>{item.title}</Card.Title>
+                    </Card.Body>
+                  )}
                 </motion.div>
               </Card>
             </Col>
@@ -254,22 +278,27 @@ function Dashboard({ user }) {
                   e.stopPropagation();
                   if (selectedCard === item.id) {
                     takeSnapshot(item.id);
-                    console.log("Taking snapshot for card:", item.id);
                   }
                   setSelectedCard(item.id === selectedCard ? null : item.id);
                 }}
               >
                 <motion.div layoutId={`card-${item.id}`}>
-                  <Card.Img
-                    className="card-snapshot"
-                    variant="top"
-                    src={snapshots[item.id] || ""}
-                    style={{
-                      objectFit: "contain",
-                      height: "300px",
-                      width: "400px",
-                    }}
-                  />
+                  {snapshots[item.id] ? (
+                    <Card.Img
+                      className="card-snapshot"
+                      variant="top"
+                      src={snapshots[item.id]}
+                      style={{
+                        objectFit: "contain",
+                        height: "300px",
+                        width: "400px",
+                      }}
+                    />
+                  ) : (
+                    <Card.Body>
+                      <Card.Title>{item.title}</Card.Title>
+                    </Card.Body>
+                  )}
                 </motion.div>
               </Card>
             </Col>
