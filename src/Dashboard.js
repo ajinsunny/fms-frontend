@@ -141,7 +141,7 @@ function Dashboard({ user }) {
   const cardItems = [
     { id: "evUsage", title: "EV Usage" },
     { id: "evSystemHealth", title: "EV System Health" },
-    { id: "maintanenceBehavior", title: "Maintanence Behavior" },
+    { id: "maintanenceBehavior", title: "Maintenance Behavior" },
     { id: "routeOptimization", title: "Route Optimization" },
     { id: "fleetFeed", title: "Fleet Feed" },
     { id: "operationsComms", title: "Operations Comms" },

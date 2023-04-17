@@ -172,13 +172,19 @@ function EVUsageStatus(props) {
       .attr("stroke-width", 1.5)
       .attr("d", line);
 
-    d3.select(svg)
-      .append("path")
-      .datum(data)
-      .attr("class", "area-path")
-      .attr("fill", "steelblue")
-      .attr("opacity", 0.2)
-      .attr("d", area);
+    for (let i = 0; i < data.length - 1; i++) {
+      const pairData = [data[i], data[i + 1]];
+      const fillColor =
+        data[i + 1].percentage - data[i].percentage > 0 ? "green" : "steelblue";
+      const opacity = fillColor === "green" ? 0.5 : 0.2; // Adjust the shade for each color
+      d3.select(svg)
+        .append("path")
+        .datum(pairData)
+        .attr("class", "area-path")
+        .attr("fill", fillColor)
+        .attr("opacity", opacity)
+        .attr("d", area);
+    }
 
     // Add the points to the SVG element
     const points = d3.select(svg).selectAll(".data-point").data(data);
@@ -348,7 +354,7 @@ function EVUsageStatus(props) {
   return (
     <div>
       <Form.Group>
-        <Card.Title>EV Usage Status</Card.Title>
+        <Card.Title style={{ textAlign: "center" }}>EV Usage Status</Card.Title>
         <div className="select-container">
           <div onClick={(e) => e.stopPropagation()}>
             <Select
@@ -364,20 +370,18 @@ function EVUsageStatus(props) {
           </div>
         </div>
       </Form.Group>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          marginTop: 16,
-        }}
-      >
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <StatusIndicator color="success" />
-          <span style={{ marginLeft: 4 }}>Vehicle Status</span>
+      <div className="status-container">
+        <div className="status-item">
+          <div className="status-wrapper" data-color="success">
+            <StatusIndicator color="success" />
+          </div>
+          <span className="status-text">Vehicle Status</span>
         </div>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <StatusIndicator color="danger" />
-          <span style={{ marginLeft: 4 }}>Network Status</span>
+        <div className="status-item">
+          <div className="status-wrapper" data-color="danger">
+            <StatusIndicator color="danger" />
+          </div>
+          <span className="status-text">Network Status</span>
         </div>
       </div>
 

@@ -146,3 +146,98 @@
 .mr-2 {
   margin-right: 0.5rem;
 }
+
+.status-container {
+  display: flex;
+  justify-content: space-between;
+}
+.status-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+}
+
+.status-wrapper {
+  position: relative;
+}
+
+.status-wrapper::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  background-color: inherit;
+  z-index: -1;
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
+}
+
+.status-wrapper[data-color="success"]::after {
+  background-color: #52bd67; /* Use the success color from Evergreen UI */
+}
+
+.status-wrapper[data-color="danger"]::after {
+  background-color: #ec4c47; /* Use the danger color from Evergreen UI */
+}
+
+.status-text {
+  margin-left: 4px;
+}
+
+@media (max-width: 1024px) {
+  .chart-frame {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .card-info {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+
+  .form-group {
+    flex-wrap: wrap;
+  }
+
+  .form-group > * {
+    margin-bottom: 8px;
+  }
+
+  .form-group .select-container {
+    width: 100%;
+  }
+
+  .form-group .select-container.view {
+    width: calc(100% * 2 / 3);
+  }
+
+  .vehicle-select,
+  .view-select {
+    width: 100%;
+  }
+}
+
+/* Responsive styles for even smaller screens */
+@media (max-width: 768px) {
+  .x-axis-tick-label {
+    font-size: 10px;
+  }
+
+  .x-axis,
+  .y-axis {
+    font-size: 10px;
+  }
+
+  .badge-pill {
+    font-size: 10px;
+    padding-right: 2em;
+    padding-left: 2em;
+  }
+
+  .mr-2 {
+    margin-right: 0.25rem;
+  }
+}
