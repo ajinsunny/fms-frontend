@@ -354,7 +354,7 @@ function EVUsageStatus(props) {
   return (
     <div>
       <Form.Group>
-        <Card.Title>EV Usage Status</Card.Title>
+        <Card.Title style={{ textAlign: "center" }}>EV Usage Status</Card.Title>
         <div className="select-container">
           <div onClick={(e) => e.stopPropagation()}>
             <Select
