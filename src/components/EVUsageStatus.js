@@ -370,20 +370,18 @@ function EVUsageStatus(props) {
           </div>
         </div>
       </Form.Group>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          marginTop: 16,
-        }}
-      >
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <StatusIndicator color="success" />
-          <span style={{ marginLeft: 4 }}>Vehicle Status</span>
+      <div className="status-container">
+        <div className="status-item">
+          <div className="status-wrapper" data-color="success">
+            <StatusIndicator color="success" />
+          </div>
+          <span className="status-text">Vehicle Status</span>
         </div>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <StatusIndicator color="danger" />
-          <span style={{ marginLeft: 4 }}>Network Status</span>
+        <div className="status-item">
+          <div className="status-wrapper" data-color="danger">
+            <StatusIndicator color="danger" />
+          </div>
+          <span className="status-text">Network Status</span>
         </div>
       </div>
 
