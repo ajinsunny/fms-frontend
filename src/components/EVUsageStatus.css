@@ -146,3 +146,60 @@
 .mr-2 {
   margin-right: 0.5rem;
 }
+
+
+@media (max-width: 1024px) {
+  .chart-frame {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .card-info {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+
+  .form-group {
+    flex-wrap: wrap;
+  }
+
+  .form-group > * {
+    margin-bottom: 8px;
+  }
+
+  .form-group .select-container {
+    width: 100%;
+  }
+
+  .form-group .select-container.view {
+    width: calc(100% * 2 / 3);
+  }
+
+  .vehicle-select,
+  .view-select {
+    width: 100%;
+  }
+}
+
+/* Responsive styles for even smaller screens */
+@media (max-width: 768px) {
+  .x-axis-tick-label {
+    font-size: 10px;
+  }
+
+  .x-axis,
+  .y-axis {
+    font-size: 10px;
+  }
+
+  .badge-pill {
+    font-size: 10px;
+    padding-right: 2em;
+    padding-left: 2em;
+  }
+
+  .mr-2 {
+    margin-right: 0.25rem;
+  }
+}

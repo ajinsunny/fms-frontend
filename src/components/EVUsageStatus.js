@@ -172,13 +172,19 @@ function EVUsageStatus(props) {
       .attr("stroke-width", 1.5)
       .attr("d", line);
 
-    d3.select(svg)
-      .append("path")
-      .datum(data)
-      .attr("class", "area-path")
-      .attr("fill", "steelblue")
-      .attr("opacity", 0.2)
-      .attr("d", area);
+    for (let i = 0; i < data.length - 1; i++) {
+      const pairData = [data[i], data[i + 1]];
+      const fillColor =
+        data[i + 1].percentage - data[i].percentage > 0 ? "green" : "steelblue";
+      const opacity = fillColor === "green" ? 0.5 : 0.2; // Adjust the shade for each color
+      d3.select(svg)
+        .append("path")
+        .datum(pairData)
+        .attr("class", "area-path")
+        .attr("fill", fillColor)
+        .attr("opacity", opacity)
+        .attr("d", area);
+    }
 
     // Add the points to the SVG element
     const points = d3.select(svg).selectAll(".data-point").data(data);
