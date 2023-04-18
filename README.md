@@ -9,11 +9,11 @@ FMS Frontend is a repository containing the frontend code for the Fleet Manageme
 Table of Contents
 -----------------
 
--   [Features](https://www.phind.com/search?cache=3e28c367-5d3c-4de1-90cd-97ce7d3c2738#features)
--   [Installation](https://www.phind.com/search?cache=3e28c367-5d3c-4de1-90cd-97ce7d3c2738#installation)
--   [Usage](https://www.phind.com/search?cache=3e28c367-5d3c-4de1-90cd-97ce7d3c2738#usage)
--   [Contributing](https://www.phind.com/search?cache=3e28c367-5d3c-4de1-90cd-97ce7d3c2738#contributing)
--   [License](https://www.phind.com/search?cache=3e28c367-5d3c-4de1-90cd-97ce7d3c2738#license)
+-   [Features](#features)
+-   [Installation](#installation)
+-   [Usage](#usage)
+-   [Contributing](#contributing)
+-   [License](#license)
 
 Features
 --------
