@@ -1,4 +1,7 @@
 
+# Fleet Management System :![image]()
+
+
 FMS Frontend
 ============
 
@@ -6,7 +9,7 @@ FMS Frontend
 
 FMS Frontend is a repository containing the frontend code for the Fleet Management System (FMS) application. This project aims to provide a user-friendly interface for managing and tracking a fleet of vehicles.
 
-[Software Design Dodcumentation](https://ijeduhrf.bit.ai/rdc/RgEOcIQIlINOBwPJ) ✍️ Still work in progress.
+[Software Design Documentation](https://ijeduhrf.bit.ai/rdc/RgEOcIQIlINOBwPJ) ✍️ Still work in progress.
 
 Table of Contents
 -----------------
