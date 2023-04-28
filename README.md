@@ -84,4 +84,4 @@ Please make sure your code follows the project's coding style and that all tests
 License
 -------
 
-This project is licensed under the MIT License. See the [LICENSE] file for more information.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/ajinsunny/fms-frontend/blob/main/LICENSE.md) file for more information.
