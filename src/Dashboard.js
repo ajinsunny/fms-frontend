@@ -18,6 +18,7 @@ import FleetFeed from "./components/FleetFeed";
 import WeatherCard from "./components/WeatherCard";
 
 function Dashboard({ user }) {
+  // State variables
   const [selectedCard, setSelectedCard] = useState(null);
   const [greeting, setGreeting] = useState("");
   const [greetingPhrase, setGreetingPhrase] = useState("");
@@ -25,6 +26,7 @@ function Dashboard({ user }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [snapshots, setSnapshots] = useState({});
 
+  // Array of greetings to be displayed
   const greetings = [
     "Fleets achieving top performance!",
     "Your fleets are looking good!",
@@ -38,17 +40,21 @@ function Dashboard({ user }) {
     "Your fleets are unstoppable!",
     "Fleets conquering the roads!",
   ];
-
+  
+  // Function to get a random greeting from the greetings array
   const getRandomGreeting = () => {
     return greetings[Math.floor(Math.random() * greetings.length)];
   };
 
+  // Reference to the expanded card element
   const expandedCardRef = useRef(null);
 
+  // Function to toggle the sidebar open/closed state
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
 
+  // Function to capture a snapshot of the card when clicked
   const takeSnapshot = async (cardId) => {
     const cardElement = document.querySelector(`#card-${cardId}`);
     const expandedCardElement = document.querySelector(".expanded-card");
@@ -60,6 +66,7 @@ function Dashboard({ user }) {
     }
   };
 
+  // Animation settings for the text elements
   const text = {
     hidden: {
       opacity: 0,
@@ -73,6 +80,7 @@ function Dashboard({ user }) {
     },
   };
 
+  // Function to render the content for a card based on its ID
   const renderCardContent = () => {
     switch (selectedCard) {
       case "evUsage":
@@ -92,6 +100,7 @@ function Dashboard({ user }) {
     }
   };
 
+  // Set up event listeners, state updates, and cleanup when component mounts or updates
   useEffect(() => {
     const now = new Date();
     const currentHour = now.getHours();
@@ -138,6 +147,7 @@ function Dashboard({ user }) {
     };
   }, [selectedCard, user]);
 
+  // Array of card items with their respective IDs and titles
   const cardItems = [
     { id: "evUsage", title: "EV Usage" },
     { id: "evSystemHealth", title: "EV System Health" },
@@ -147,8 +157,10 @@ function Dashboard({ user }) {
     { id: "operationsComms", title: "Operations Comms" },
   ];
 
+  // Return the Dashboard component JSX
   return (
     <div>
+    {/* Render the Sidebar component with custom styles and menu items */}
       <Sidebar
         sidebar={
           <div className="sidebar-menu">
@@ -165,9 +177,10 @@ function Dashboard({ user }) {
             </ul>
           </div>
         }
-        open={sidebarOpen}
-        onSetOpen={toggleSidebar}
+        open={sidebarOpen} // Set the open state of the sidebar
+        onSetOpen={toggleSidebar}// Function to toggle the sidebar open state
         styles={{
+                // Custom styles for the sidebar, overlay, and content
           sidebar: {
             background: "#292929",
             padding: "4rem",
@@ -183,13 +196,16 @@ function Dashboard({ user }) {
           },
         }}
       >
+        {/* Hamburger menu icon to toggle sidebar open state */}
         <div className="hamburger-menu" onClick={toggleSidebar}>
           <FontAwesomeIcon icon={faBars} />
         </div>
       </Sidebar>
       <div className="header-container">
+        {/* WeatherCard component */}
         <WeatherCard />
         <h1 className="header-text">
+          {/* Display the greeting text with animations */}
           {greeting.split("").map((char, index) => (
             <motion.span
               key={index}
@@ -201,6 +217,7 @@ function Dashboard({ user }) {
               {char}
             </motion.span>
           ))}
+          {/* Display the emoji with animations */}
           {emoji.split("").map((char, index) => (
             <motion.span
               key={greeting.length + index}
@@ -216,7 +233,7 @@ function Dashboard({ user }) {
             </motion.span>
           ))}
           <br />
-          {/* Replace the previous greetingPhrase mapping code with this: */}
+          {/* Display the greetingPhrase with animations */}
           <motion.span
             key={greeting.length + emoji.length}
             variants={text}
@@ -232,6 +249,7 @@ function Dashboard({ user }) {
         </h1>
         <div style={{ flexGrow: 1 }} />
       </div>{" "}
+      {/* Container with rows and columns for displaying card items */}
       <Container fluid>
         <Row
           className="align-items-center gx-2 gy-2"
