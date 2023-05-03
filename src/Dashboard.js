@@ -267,6 +267,7 @@ function Dashboard({ user }) {
                 }}
               >
                 <motion.div layoutId={`card-${item.id}`}>
+                {/* If a snapshot is available, display it /}
                   {snapshots[item.id] ? (
                     <Card.Img
                       className="card-snapshot"
@@ -281,6 +282,7 @@ function Dashboard({ user }) {
                     />
                   ) : (
                     <Card.Body>
+                    {/ Otherwise, display the card title */}
                       <Card.Title>{item.title}</Card.Title>
                     </Card.Body>
                   )}
@@ -288,7 +290,7 @@ function Dashboard({ user }) {
               </Card>
             </Col>
           ))}
-
+          {/* Loop through the next 3 card items */}
           {cardItems.slice(3, 6).map((item) => (
             <Col key={item.id} xs={12} sm={6} md={4} lg={4} xl={4}>
               <Card
@@ -323,6 +325,7 @@ function Dashboard({ user }) {
           ))}
         </Row>
       </Container>
+      {/* Animate the presence of the expanded card /}
       <AnimatePresence>
         {selectedCard && (
           <motion.div
