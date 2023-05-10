@@ -216,7 +216,6 @@ function Dashboard({ user }) {
             </motion.span>
           ))}
           <br />
-          {/* Replace the previous greetingPhrase mapping code with this: */}
           <motion.span
             key={greeting.length + emoji.length}
             variants={text}
@@ -235,7 +234,6 @@ function Dashboard({ user }) {
       <Container fluid>
         <Row
           className="align-items-center gx-2 gy-2"
-          // style={{ paddingBlock: "50px" }}
         >
           {cardItems.slice(0, 3).map((item) => (
             <Col key={item.id} xs={12} sm={6} md={4} lg={4} xl={4}>

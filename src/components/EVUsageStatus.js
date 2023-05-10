@@ -15,6 +15,11 @@ function EVUsageStatus(props) {
 
   const [jsonData, setJsonData] = useState();
   const [vehicleItems, setVehicleItems] = useState([]);
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+
+  const handleDropdownClick = () => {
+    setDropdownVisible(!dropdownVisible);
+  };
 
   const svgRef = useRef();
   const svgRef2 = useRef();
@@ -378,10 +383,41 @@ function EVUsageStatus(props) {
           <span className="status-text">Vehicle Status</span>
         </div>
         <div className="status-item">
+          <div className="status-wrapper" data-color="standby">
+            <StatusIndicator color="standby" />
+          </div>
+          <span className="status-text">Ping Status</span>
+        </div>
+        <div className="status-item">
           <div className="status-wrapper" data-color="danger">
             <StatusIndicator color="danger" />
           </div>
-          <span className="status-text">Network Status</span>
+          <span className="status-text">Charging Status</span>
+        </div>
+        <div className="status-item">
+          <button
+            className="notification-btn"
+            type="button"
+            data-toggle="dropdown"
+            onClick={handleDropdownClick}
+          >
+            <i className="fas fa-bell"></i>
+          </button>
+
+          <div
+            className="dropdown-menu"
+            style={{ display: dropdownVisible ? "block" : "none" }}
+          >
+            <a className="dropdown-item" href="#">
+              Notification 1
+            </a>
+            <a className="dropdown-item" href="#">
+              Notification 2
+            </a>
+            <a className="dropdown-item" href="#">
+              Notification 3
+            </a>
+          </div>
         </div>
       </div>
 

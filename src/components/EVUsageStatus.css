@@ -170,8 +170,11 @@
   left: 0;
   border-radius: 50%;
   background-color: inherit;
-  z-index: -1;
   box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
+}
+
+.status-wrapper[data-color="standby"]::after {
+  background-color: #f8bc19; /* Use the danger color from Evergreen UI */
 }
 
 .status-wrapper[data-color="success"]::after {
@@ -184,6 +187,56 @@
 
 .status-text {
   margin-left: 4px;
+}
+
+.notification-btn {
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0; /* Reset the default padding */
+  margin: 0; /* Reset the default margin */
+  color: #333; /* Set the color of the bell icon */
+}
+
+.notification-btn:hover {
+  color: #0069d9; /* Set the color of the bell icon on hover */
+}
+
+.notification-btn:focus {
+  outline: none; /* Remove the default focus outline */
+}
+
+.notification-btn i {
+  display: block; /* Set the display property of the icon */
+  line-height: 1; /* Set the line-height property of the icon */
+}
+
+.dropdown-menu {
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+  padding: 0.5rem 0;
+  min-width: 200px;
+  z-index: 1000;
+  display: none;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 0.5rem 1.5rem;
+  color: #333;
+  text-decoration: none;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f8f9fa;
+  color: #0069d9;
+}
+
+.status-item {
+  position: relative;
 }
 
 @media (max-width: 1024px) {
