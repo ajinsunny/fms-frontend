@@ -49,9 +49,9 @@ To get started with the FMS Frontend, follow these steps:
 
     [](https://www.phind.com/search?cache=3e28c367-5d3c-4de1-90cd-97ce7d3c2738)
 
-3.  Install the required dependencies:
+3.  Install the required dependencies using yarn:
 
-    `npm install`
+    `yarn install`
 
     [](https://www.phind.com/search?cache=3e28c367-5d3c-4de1-90cd-97ce7d3c2738)
 
