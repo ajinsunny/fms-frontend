@@ -267,7 +267,7 @@ function Dashboard({ user }) {
                 }}
               >
                 <motion.div layoutId={`card-${item.id}`}>
-                {/* If a snapshot is available, display it /}
+                {/* If a snapshot is available, display it */}
                   {snapshots[item.id] ? (
                     <Card.Img
                       className="card-snapshot"
@@ -282,7 +282,7 @@ function Dashboard({ user }) {
                     />
                   ) : (
                     <Card.Body>
-                    {/ Otherwise, display the card title */}
+                    {/* Otherwise, display the card title */}
                       <Card.Title>{item.title}</Card.Title>
                     </Card.Body>
                   )}
@@ -325,7 +325,7 @@ function Dashboard({ user }) {
           ))}
         </Row>
       </Container>
-      {/* Animate the presence of the expanded card /}
+      {/* Animate the presence of the expanded card */}
       <AnimatePresence>
         {selectedCard && (
           <motion.div

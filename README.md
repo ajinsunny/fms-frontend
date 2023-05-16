@@ -43,19 +43,25 @@ To get started with the FMS Frontend, follow these steps:
 
     [](https://www.phind.com/search?cache=3e28c367-5d3c-4de1-90cd-97ce7d3c2738)
 
-2.  Navigate to the project directory:
+1.  Navigate to the project directory:
 
     `cd fms-frontend`
 
+    [](https://www.phind.com/search?cache=3e28c367-5d3c-4de1-90cd-97ce7d3c2738)    
+
+1.  Install the required dependencies using yarn:
+
+    `yarn install`
+
     [](https://www.phind.com/search?cache=3e28c367-5d3c-4de1-90cd-97ce7d3c2738)
 
-3.  Install the required dependencies:
+    If you have been using npm install, there will be a few additional steps the first time you use yarn instead.
+    1. Install yarn if you don't already have it with `npm install -g yarn`
+    1. Delete the node_modules folder
+    1. Delete the package.lock file
+    1. Run `yarn install`
 
-    `npm install`
-
-    [](https://www.phind.com/search?cache=3e28c367-5d3c-4de1-90cd-97ce7d3c2738)
-
-4.  Start the development server:
+1.  Start the development server:
 
     `npm start`
 
