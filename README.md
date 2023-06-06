@@ -11,7 +11,7 @@ FMS Frontend is a repository containing the frontend code for the Fleet Manageme
 
 The app is [LIVE HERE](https://main.d2tmvp8ck6o5qe.amplifyapp.com/)
 
-[Software Design Documentation](https://ijeduhrf.bit.ai/rdc/RgEOcIQIlINOBwPJ) ✍️ Still work in progress.
+[Software Design Documentation](https://github.com/ajinsunny/fms-frontend/wiki) ✍️ Still work in progress.
 
 Table of Contents
 -----------------
