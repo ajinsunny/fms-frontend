@@ -4,7 +4,7 @@ import { Card } from "react-bootstrap";
 import fleetFeedImage from "./img/fleetfeed.png";
 import "./FleetFeed.css";
 
-function FleetFeed(props) {
+function FleetFeed() {
   return (
     <div className="card-content">
       <Card className="fleet-feed-card">
