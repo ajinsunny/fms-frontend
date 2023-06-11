@@ -1,0 +1,21 @@
+version: 2.1
+
+            
+jobs:
+  build-frontend:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - checkout
+      - run: npm i
+      - run: npm run lint
+      - save_cache:
+          key: "frontend-packages"
+          paths:
+            - /node_modules
+
+workflows:
+  default:
+    jobs:
+      - build-frontend
+      
