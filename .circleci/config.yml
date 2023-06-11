@@ -7,8 +7,8 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - checkout
-      - run: cd frontend && npm i
-      - run: cd frontend && npm run lint
+      - run: npm i
+      - run: npm run lint
       - save_cache:
           key: "frontend-packages"
           paths:
