@@ -1,0 +1,63 @@
+/* EVSystemHealth.css */
+
+.card-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Add this line to ensure the div takes full width */
+}
+
+.ev-system-health-card {
+width: 80%; /* Adjust the width to fit content */
+max-width: 500px; 
+overflow: hidden; 
+border-radius: 5px; 
+display: flex; 
+flex-direction: column; 
+align-items: center;
+margin-top: 20px; /* Add some margin from the top */
+}
+
+.ev-system-health-img {
+width: 80%; /* Adjust the width to fit content */
+max-height: 300px; 
+object-fit: cover;
+margin-top: 20px; /* Add some margin from the top */
+}
+
+.ev-system-health-card-body {
+display: flex;
+flex-direction: column;
+align-items: center;
+width: 100%; /* Add this line to ensure the div takes full width */
+}
+
+.ev-system-health-content {
+width: 100%;
+text-align: center;
+}
+
+.select-component {
+  margin: 20px 0;
+}
+
+.select-component .Select__control {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+.select-component .Select__menu {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+}
+
+.select-component .Select__option {
+  padding: 10px;
+}
+
+.select-component .Select__option--is-selected {
+  background: #007bff;
+  color: #fff;
+}
