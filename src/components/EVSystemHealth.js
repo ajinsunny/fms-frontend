@@ -1,62 +1,68 @@
 import React, { useState } from "react";
-import { Card } from "react-bootstrap";
-import Select from "react-select";
-import "./EVSystemHealth.css";
+import { Form, Dropdown } from "react-bootstrap";
 
 function EVSystemHealth(props) {
-  const [selectedPart, setSelectedPart] = useState(null);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
-  const vehicleParts = [
-    {
-      value: "part1",
-      label: "Vehicle Part 1",
-      img: "part1.png",
-      pdf: "part1.pdf",
-    },
-    {
-      value: "part2",
-      label: "Vehicle Part 2",
-      img: "part2.png",
-      pdf: "part2.pdf",
-    },
+  const items = [
+    "Item 1",
+    "Item 2",
+    "Item 3",
+    "Item 4",
+    "Item 5",
+    "Item 6",
+    "Item 7",
+    "Item 8",
+    "Item 9",
+    "Item 10",
+    "Item 11",
+    "Item 12",
+    "Item 13",
+    "Item 14",
+    "Item 15",
+    "Item 16",
+    "Item 17",
+    "Item 18",
+    "Item 19",
+    "Item 20",
   ];
 
-  const openPDF = () => {
-    window.open(selectedPart.pdf, "_blank");
+  const filteredItems = items.filter((item) =>
+    item.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const handleSelect = (eventKey) => {
+    setSelectedItem(eventKey);
+  };
+
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value);
   };
 
   return (
-    <div className="card-content">
-      <Card className="ev-system-health-card">
-        <Card.Body className="ev-system-health-card-body">
-          <div className="ev-system-health-content">
-            <Card.Title>EV System Health</Card.Title>
-
-            <Select
-              options={vehicleParts}
-              onChange={setSelectedPart}
-              isSearchable
-              className="select-component" // Add a class for styling
-              placeholder="Search for a vehicle part"
+    <div>
+      <Form.Group>
+        <Form.Label>Select an item:</Form.Label>
+        <Dropdown onSelect={handleSelect}>
+          <Dropdown.Toggle>{selectedItem || "Select Item"}</Dropdown.Toggle>
+          <Dropdown.Menu>
+            <Form.Control
+              type="text"
+              placeholder="Search..."
+              value={searchTerm}
+              onChange={handleSearch}
             />
-
-            {selectedPart && (
-              <>
-                <Card.Img
-                  className="ev-system-health-img"
-                  src={selectedPart.img}
-                />
-                <button onClick={openPDF}>Open Documentation</button>
-                <h2>Service Log</h2>
-                <p>Service 1: Performed on 01/01/2023</p>
-                <p>Service 2: Performed on 02/02/2023</p>
-                <p>Service 3: Performed on 03/03/2023</p>
-              </>
-            )}
-          </div>
-        </Card.Body>
-      </Card>
+            {filteredItems.map((item, index) => (
+              <Dropdown.Item key={index} eventKey={item}>
+                {item}
+              </Dropdown.Item>
+            ))}
+          </Dropdown.Menu>
+        </Dropdown>
+      </Form.Group>
     </div>
+   
   );
 }
 

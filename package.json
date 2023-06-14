@@ -11,17 +11,10 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.2",
     "react-dom": "^18.2.0",
-<<<<<<< Updated upstream
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.3",
     "web-vitals": "^1.0.1",
     "@babel/core": "^7.12.3",
-=======
-    "react-router-dom": "^5.3.4",
-    "react-scripts": "^5.0.1",
-    "react-select": "^5.7.3",
-    "react-sidebar": "^3.0.2",
->>>>>>> Stashed changes
     "semver": "^5.7.1",
     "type-fest": "^0.21.3",
     "typescript": "^5.0.2"
