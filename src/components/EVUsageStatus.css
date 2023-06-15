@@ -1,0 +1,296 @@
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2.5px;
+}
+
+.x-axis,
+.y-axis {
+  font-size: 12px;
+  font-family: "Inter", sans-serif;
+}
+
+.x-axis path,
+.y-axis path,
+.x-axis line,
+.y-axis line {
+  stroke: #aaa;
+}
+
+.x-axis text,
+.y-axis text {
+  fill: #333;
+}
+
+.form-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-group > * {
+  margin-right: 16px;
+}
+
+.form-group > *:last-child {
+  margin-right: 0;
+}
+
+.form-group .select-container {
+  width: 50%;
+}
+
+.form-group .select-container.view {
+  width: calc(50% * 2 / 3);
+}
+
+.vehicle-select {
+  padding: 10px;
+  width: 100%;
+}
+
+.view-select {
+  padding: 10px;
+  width: 33%;
+}
+
+.chart-frame {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: #f8f9fa; /* Frame background color */
+  border: 1px solid #dee2e6; /* Frame border color */
+  padding: 20px; /* Padding around the frame */
+  border-radius: 15px; /* Rounded corners for the frame */
+}
+.card-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  width: 300px;
+  height: 300px;
+}
+
+.card-item {
+  margin-bottom: 1rem;
+}
+
+.card-item:last-child {
+  margin-bottom: 0;
+}
+
+.chart-container {
+  text-align: center;
+  background-color: #ffffff; /* Chart background color */
+  border-radius: 15px; /* Rounded corners for the chart */
+}
+
+.select__control {
+  border-radius: 25px !important;
+}
+
+.x-axis-tick-label {
+  transform: rotate(-45deg);
+  text-anchor: end;
+  dy: -4px;
+  dx: -10px;
+}
+
+/* Custom styles to replace Bootstrap */
+/* Custom styles to replace Bootstrap */
+.d-flex {
+  display: flex;
+  justify-content: center; /* Horizontally center the pill buttons */
+  align-items: center; /* Vertically center the pill buttons */
+  height: 100%; /* Make the container take full available height */
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25em 0.6em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 2;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 10rem;
+}
+
+.badge-pill {
+  padding-right: 3em;
+  padding-left: 3em;
+  border-radius: 10rem;
+}
+
+.badge-primary {
+  color: #fff;
+  background-color: #0069d9; /* Default background color for unclicked buttons */
+  cursor: pointer;
+}
+
+.badge-primary:hover {
+  background-color: #bcdcff; /* Background color for hover state */
+}
+
+.badge-primary:active,
+.active-pill {
+  background-color: #00b333; /* Background color for active (clicked) state */
+}
+
+.mr-2 {
+  margin-right: 0.5rem;
+}
+
+.status-container {
+  display: flex;
+  justify-content: space-between;
+}
+.status-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+}
+
+.status-wrapper {
+  position: relative;
+}
+
+.status-wrapper::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  background-color: inherit;
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
+}
+
+.status-wrapper[data-color="standby"]::after {
+  background-color: #f8bc19; /* Use the danger color from Evergreen UI */
+}
+
+.status-wrapper[data-color="success"]::after {
+  background-color: #52bd67; /* Use the success color from Evergreen UI */
+}
+
+.status-wrapper[data-color="danger"]::after {
+  background-color: #ec4c47; /* Use the danger color from Evergreen UI */
+}
+
+.status-text {
+  margin-left: 4px;
+}
+
+.notification-btn {
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0; /* Reset the default padding */
+  margin: 0; /* Reset the default margin */
+  color: #333; /* Set the color of the bell icon */
+}
+
+.notification-btn:hover {
+  color: #0069d9; /* Set the color of the bell icon on hover */
+}
+
+.notification-btn:focus {
+  outline: none; /* Remove the default focus outline */
+}
+
+.notification-btn i {
+  display: block; /* Set the display property of the icon */
+  line-height: 1; /* Set the line-height property of the icon */
+}
+
+.dropdown-menu {
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+  padding: 0.5rem 0;
+  min-width: 200px;
+  z-index: 1000;
+  display: none;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 0.5rem 1.5rem;
+  color: #333;
+  text-decoration: none;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f8f9fa;
+  color: #0069d9;
+}
+
+.status-item {
+  position: relative;
+}
+
+@media (max-width: 1024px) {
+  .chart-frame {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .card-info {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+
+  .form-group {
+    flex-wrap: wrap;
+  }
+
+  .form-group > * {
+    margin-bottom: 8px;
+  }
+
+  .form-group .select-container {
+    width: 100%;
+  }
+
+  .form-group .select-container.view {
+    width: calc(100% * 2 / 3);
+  }
+
+  .vehicle-select,
+  .view-select {
+    width: 100%;
+  }
+}
+
+/* Responsive styles for even smaller screens */
+@media (max-width: 768px) {
+  .x-axis-tick-label {
+    font-size: 10px;
+  }
+
+  .x-axis,
+  .y-axis {
+    font-size: 10px;
+  }
+
+  .badge-pill {
+    font-size: 10px;
+    padding-right: 2em;
+    padding-left: 2em;
+  }
+
+  .mr-2 {
+    margin-right: 0.25rem;
+  }
+}

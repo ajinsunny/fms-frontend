@@ -1,444 +1,329 @@
-import React, { useState, useRef, useEffect } from "react";
-import { Row, Col, Button, Modal } from "react-bootstrap";
-import { AnimatePresence, motion } from "framer-motion";
+import React, { useState, useEffect, useRef } from "react";
+import "./Dashboard.css";
+import "./Sidebar.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+
+import { Container, Row, Col, Card } from "react-bootstrap";
+import { motion, AnimatePresence } from "framer-motion";
+import Sidebar from "react-sidebar";
+import html2canvas from "html2canvas";
+
 import EVUsageStatus from "./components/EVUsageStatus";
 import EVSystemHealth from "./components/EVSystemHealth";
 import MaintanenceBehavior from "./components/MaintanenceBehavior";
 import RouteOptimization from "./components/RouteOptimization";
 import OperationsComms from "./components/OperationsComms";
 import FleetFeed from "./components/FleetFeed";
+import WeatherCard from "./components/WeatherCard";
 
-function Dashboard() {
-  const [showEVUsageStatus, setShowEVUsageStatus] = useState(false);
-  const [showEVSystemHealth, setShowEVSystemHealth] = useState(false);
-  const [showMaintanenceBehavior, setShowMaintanenceBehavior] = useState(false);
-  const [showRouteOptimization, setShowRouteOptimization] = useState(false);
-  const [showOperationsComms, setShowOperationsComms] = useState(false);
-  const [showFleetFeed, setShowFleetFeed] = useState(false);
+function Dashboard({ user }) {
+  const [selectedCard, setSelectedCard] = useState(null);
+  const [greeting, setGreeting] = useState("");
+  const [greetingPhrase, setGreetingPhrase] = useState("");
+  const [emoji, setEmoji] = useState("");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [snapshots, setSnapshots] = useState({});
 
-  const evUsageStatusRef = useRef(null);
-  const evSystemHealthRef = useRef(null);
-  const maintanenceBehaviorRef = useRef(null);
-  const routeOptimizationRef = useRef(null);
-  const fleetFeedRef = useRef(null);
-  const operationsCommsRef = useRef(null);
+  const greetings = [
+    "Fleets achieving top performance!",
+    "Your fleets are looking good!",
+    "Your fleets are thriving!",
+    "Fleets driving to excellence!",
+    "Remarkable fleet progress!",
+    "Efficient fleets, smooth rides!",
+    "Fleets navigating with ease!",
+    "Mastery in fleet management!",
+    "Fleets cruising to success!",
+    "Your fleets are unstoppable!",
+    "Fleets conquering the roads!",
+  ];
 
-  useEffect(() => {
-    // Attach event listener to document
-    document.addEventListener("click", handleClickOutside);
+  const getRandomGreeting = () => {
+    return greetings[Math.floor(Math.random() * greetings.length)];
+  };
 
-    // Remove event listener on cleanup
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, []);
+  const expandedCardRef = useRef(null);
 
-  const handleClickOutside = (e) => {
-    if (
-      evUsageStatusRef.current &&
-      !evUsageStatusRef.current.contains(e.target) &&
-      !e.target.classList.contains("ev-usage-status-btn")
-    ) {
-      setShowEVUsageStatus(false);
-    }
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
 
-    if (
-      evSystemHealthRef.current &&
-      !evSystemHealthRef.current.contains(e.target) &&
-      !e.target.classList.contains("ev-system-health-btn")
-    ) {
-      setShowEVSystemHealth(false);
-    }
+  const takeSnapshot = async (cardId) => {
+    const cardElement = document.querySelector(`#card-${cardId}`);
+    const expandedCardElement = document.querySelector(".expanded-card");
 
-    if (
-      maintanenceBehaviorRef.current &&
-      !maintanenceBehaviorRef.current.contains(e.target) &&
-      !e.target.classList.contains("maintanence-behavior-btn")
-    ) {
-      setShowMaintanenceBehavior(false);
-    }
-
-    if (
-      routeOptimizationRef.current &&
-      !routeOptimizationRef.current.contains(e.target) &&
-      !e.target.classList.contains("route-optimization-btn")
-    ) {
-      setShowRouteOptimization(false);
-    }
-
-    if (
-      fleetFeedRef.current &&
-      !fleetFeedRef.current.contains(e.target) &&
-      !e.target.classList.contains("fleet-feed-btn")
-    ) {
-      setShowFleetFeed(false);
-    }
-
-    if (
-      operationsCommsRef.current &&
-      !operationsCommsRef.current.contains(e.target) &&
-      !e.target.classList.contains("operations-comms-btn")
-    ) {
-      setShowOperationsComms(false);
+    if (expandedCardElement) {
+      const canvas = await html2canvas(expandedCardElement);
+      const snapshot = canvas.toDataURL();
+      setSnapshots((prevState) => ({ ...prevState, [cardId]: snapshot }));
     }
   };
 
-  const handleCloseEVUsageStatus = () => setShowEVUsageStatus(false);
-  const handleCloseEVSystemHealth = () => setShowEVSystemHealth(false);
-  const handleCloseMaintanenceBehavior = () =>
-    setShowMaintanenceBehavior(false);
-  const handleCloseRouteOptimization = () => setShowRouteOptimization(false);
-  const handleCloseOperationsComms = () => setShowOperationsComms(false);
-  const handleCloseFleetFeed = () => setShowFleetFeed(false);
+  const text = {
+    hidden: {
+      opacity: 0,
+    },
+    visible: {
+      opacity: 1,
+      pathLength: 1,
+      fill: "rgba(255, 255, 255, 1)",
+      strokeDasharray: "1 0",
+      strokeDashoffset: "0",
+    },
+  };
 
-  const handleShowEVUsageStatus = () => setShowEVUsageStatus(true);
-  const handleShowEVSystemHealth = () => setShowEVSystemHealth(true);
-  const handleShowMaintanenceBehavior = () => setShowMaintanenceBehavior(true);
-  const handleShowRouteOptimization = () => setShowRouteOptimization(true);
-  const handleShowOperationsComms = () => setShowOperationsComms(true);
-  const handleShowFleetFeed = () => setShowFleetFeed(true);
+  const renderCardContent = () => {
+    switch (selectedCard) {
+      case "evUsage":
+        return <EVUsageStatus />;
+      case "evSystemHealth":
+        return <EVSystemHealth />;
+      case "maintanenceBehavior":
+        return <MaintanenceBehavior />;
+      case "routeOptimization":
+        return <RouteOptimization />;
+      case "fleetFeed":
+        return <FleetFeed />;
+      case "operationsComms":
+        return <OperationsComms />;
+      default:
+        return null;
+    }
+  };
+
+  useEffect(() => {
+    const now = new Date();
+    const currentHour = now.getHours();
+
+    let newGreeting = "";
+    let newEmoji = "";
+
+    const randomGreeting = getRandomGreeting();
+    setGreetingPhrase(randomGreeting);
+
+    if (currentHour >= 5 && currentHour < 12) {
+      newGreeting = "Good morning";
+      newEmoji = " 🌅";
+    } else if (currentHour >= 12 && currentHour < 18) {
+      newGreeting = "Good afternoon";
+      newEmoji = " 🌤️";
+    } else {
+      newGreeting = "Good evening";
+      newEmoji = " 🌙";
+    }
+
+    if (user) {
+      newGreeting = `${newGreeting}, ${user}!`;
+    } else {
+      newGreeting = `${newGreeting}!`;
+    }
+
+    setGreeting(newGreeting);
+    setEmoji(newEmoji);
+    const handleClickOutside = (event) => {
+      if (
+        selectedCard &&
+        event.target.closest(".expanded-card") === null &&
+        !expandedCardRef.current.contains(event.target)
+      ) {
+        takeSnapshot(selectedCard);
+        setSelectedCard(null);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [selectedCard, user]);
+
+  const cardItems = [
+    { id: "evUsage", title: "EV Usage" },
+    { id: "evSystemHealth", title: "EV System Health" },
+    { id: "maintanenceBehavior", title: "Maintenance Behavior" },
+    { id: "routeOptimization", title: "Route Optimization" },
+    { id: "fleetFeed", title: "Fleet Feed" },
+    { id: "operationsComms", title: "Operations Comms" },
+  ];
 
   return (
     <div>
-      <h1>
-        Good morning, Ajin! ☀️
-        <br />
-        Your fleets are looking good!
-      </h1>
-
-      <Row className="align-items-center" style={{ paddingBlock: "100px" }}>
-        <Col>
-          {showEVUsageStatus && (
-            <motion.div
-              key="evUsageStatus"
-              ref={evUsageStatusRef}
-              initial={{
-                scaleX: 0,
-                scaleY: 0,
-                opacity: 0,
-                transformOrigin: "top left",
-              }}
-              animate={{
-                scaleX: 1,
-                scaleY: 1,
-                opacity: 1,
-                transformOrigin: "top left",
-              }}
-              exit={{
-                scaleX: 0,
-                scaleY: 0,
-                opacity: 0,
-                transformOrigin: "top left",
-              }}
+      <Sidebar
+        sidebar={
+          <div className="sidebar-menu">
+            <ul>
+              <li>
+                <h3>Dashboard</h3>
+              </li>
+              <li>
+                <h3>System Docs</h3>
+              </li>
+              <li>
+                <h3>Settings</h3>
+              </li>
+            </ul>
+          </div>
+        }
+        open={sidebarOpen}
+        onSetOpen={toggleSidebar}
+        styles={{
+          sidebar: {
+            background: "#292929",
+            padding: "4rem",
+            width: "400px",
+          },
+          overlay: {
+            background: "rgba(0, 0, 0, 0.5)",
+            zIndex: 999,
+          },
+          content: {
+            position: "relative",
+            overflow: "hidden",
+          },
+        }}
+      >
+        <div className="hamburger-menu" onClick={toggleSidebar}>
+          <FontAwesomeIcon icon={faBars} />
+        </div>
+      </Sidebar>
+      <div className="header-container">
+        <WeatherCard />
+        <h1 className="header-text">
+          {greeting.split("").map((char, index) => (
+            <motion.span
+              key={index}
+              variants={text}
+              initial="hidden"
+              animate="visible"
+              transition={{ delay: index * 0.03 + 0.1, duration: 0.01 }}
+            >
+              {char}
+            </motion.span>
+          ))}
+          {emoji.split("").map((char, index) => (
+            <motion.span
+              key={greeting.length + index}
+              variants={text}
+              initial="hidden"
+              animate="visible"
               transition={{
+                delay: greeting.length * 0.01 + index * 0.01 + 0.5,
                 duration: 0.5,
-                ease: "easeInOut",
-              }}
-              style={{
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                zIndex: 1000,
-                backgroundColor: "white",
-                borderRadius: 5,
-                boxShadow: "0px 3px 10px rgba(0, 0, 0, 0.2)",
-                padding: 20,
               }}
             >
-              <EVUsageStatus />
-            </motion.div>
-          )}
-          {!showEVUsageStatus && (
-            <Button
-              variant="primary"
-              onClick={handleShowEVUsageStatus}
-              className="ev-usage-status-btn"
-            >
-              EV Usage
-            </Button>
-          )}
-        </Col>
-        <Col>
-          <AnimatePresence>
-            {showEVSystemHealth && (
-              <motion.div
-                key="evSystemHealth"
-                ref={evSystemHealthRef}
-                onClick={handleCloseEVSystemHealth}
-                initial={{
-                  scaleX: 0,
-                  scaleY: 0,
-                  opacity: 0,
-                  transformOrigin: "top left",
-                }}
-                animate={{
-                  scaleX: 1,
-                  scaleY: 1,
-                  opacity: 1,
-                  transformOrigin: "top left",
-                }}
-                exit={{
-                  scaleX: 0,
-                  scaleY: 0,
-                  opacity: 0,
-                  transformOrigin: "top left",
-                }}
-                transition={{
-                  duration: 0.5,
-                  ease: "easeInOut",
-                }}
-                style={{
-                  position: "absolute",
-                  top: "50%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)",
-                  zIndex: 1000,
-                  backgroundColor: "white",
-                  borderRadius: 5,
-                  boxShadow: "0px 3px 10px rgba(0, 0, 0, 0.2)",
-                  padding: 20,
+              {char}
+            </motion.span>
+          ))}
+          <br />
+          <motion.span
+            key={greeting.length + emoji.length}
+            variants={text}
+            initial="hidden"
+            animate="visible"
+            transition={{
+              delay: greeting.length * 0.001 + emoji.length * 0.001 + 0.5,
+              duration: 0.5,
+            }}
+          >
+            {greetingPhrase}
+          </motion.span>
+        </h1>
+        <div style={{ flexGrow: 1 }} />
+      </div>{" "}
+      <Container fluid>
+        <Row className="align-items-center gx-2 gy-2">
+          {cardItems.slice(0, 3).map((item) => (
+            <Col key={item.id} xs={12} sm={6} md={4} lg={4} xl={4}>
+              <Card
+                onClick={(e) => {
+                  e.stopPropagation();
+                  if (selectedCard === item.id) {
+                    takeSnapshot(item.id);
+                  }
+                  setSelectedCard(item.id === selectedCard ? null : item.id);
                 }}
               >
-                <EVSystemHealth />
-              </motion.div>
-            )}
-          </AnimatePresence>
-          {!showEVSystemHealth && (
-            <Button
-              variant="primary"
-              onClick={handleShowEVSystemHealth}
-              className="ev-system-health-btn"
-            >
-              EV System Health
-            </Button>
-          )}
-        </Col>
-        <Col>
-          <AnimatePresence>
-            {showMaintanenceBehavior && (
-              <motion.div
-                key="evMaintanenceBehavior"
-                ref={maintanenceBehaviorRef}
-                onClick={handleCloseMaintanenceBehavior}
-                initial={{
-                  scaleX: 0,
-                  scaleY: 0,
-                  opacity: 0,
-                  transformOrigin: "top left",
-                }}
-                animate={{
-                  scaleX: 1,
-                  scaleY: 1,
-                  opacity: 1,
-                  transformOrigin: "top left",
-                }}
-                exit={{
-                  scaleX: 0,
-                  scaleY: 0,
-                  opacity: 0,
-                  transformOrigin: "top left",
-                }}
-                transition={{
-                  duration: 0.5,
-                  ease: "easeInOut",
-                }}
-                style={{
-                  position: "absolute",
-                  top: "50%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)",
-                  zIndex: 1000,
-                  backgroundColor: "white",
-                  borderRadius: 5,
-                  boxShadow: "0px 3px 10px rgba(0, 0, 0, 0.2)",
-                  padding: 20,
-                }}
-              >
-                <MaintanenceBehavior />
-              </motion.div>
-            )}
-          </AnimatePresence>
-          {!showMaintanenceBehavior && (
-            <Button
-              variant="primary"
-              onClick={handleShowMaintanenceBehavior}
-              className="maintanence-behavior-btn"
-            >
-              Maintanence Behavior
-            </Button>
-          )}
-        </Col>
-      </Row>
+                <motion.div layoutId={`card-${item.id}`}>
+                  {snapshots[item.id] ? (
+                    <Card.Img
+                      className="card-snapshot"
+                      variant="top"
+                      src={snapshots[item.id]}
+                      style={{
+                        objectFit: "contain",
+                        height: "300px",
+                        width: "400px",
+                        backgroundColor: "transparent",
+                      }}
+                    />
+                  ) : (
+                    <Card.Body>
+                      <Card.Title>{item.title}</Card.Title>
+                    </Card.Body>
+                  )}
+                </motion.div>
+              </Card>
+            </Col>
+          ))}
 
-      <Row className="align-items-center" style={{ paddingBlock: "100px" }}>
-        <Col>
-          <AnimatePresence>
-            {showRouteOptimization && (
-              <motion.div
-                key="evRouteOptimization"
-                ref={routeOptimizationRef}
-                onClick={handleCloseRouteOptimization}
-                initial={{
-                  scaleX: 0,
-                  scaleY: 0,
-                  opacity: 0,
-                  transformOrigin: "top left",
-                }}
-                animate={{
-                  scaleX: 1,
-                  scaleY: 1,
-                  opacity: 1,
-                  transformOrigin: "top left",
-                }}
-                exit={{
-                  scaleX: 0,
-                  scaleY: 0,
-                  opacity: 0,
-                  transformOrigin: "top left",
-                }}
-                transition={{
-                  duration: 0.5,
-                  ease: "easeInOut",
-                }}
-                style={{
-                  position: "absolute",
-                  top: "50%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)",
-                  zIndex: 1000,
-                  backgroundColor: "white",
-                  borderRadius: 5,
-                  boxShadow: "0px 3px 10px rgba(0, 0, 0, 0.2)",
-                  padding: 20,
+          {cardItems.slice(3, 6).map((item) => (
+            <Col key={item.id} xs={12} sm={6} md={4} lg={4} xl={4}>
+              <Card
+                onClick={(e) => {
+                  e.stopPropagation();
+                  if (selectedCard === item.id) {
+                    takeSnapshot(item.id);
+                  }
+                  setSelectedCard(item.id === selectedCard ? null : item.id);
                 }}
               >
-                <RouteOptimization />
-              </motion.div>
-            )}
-          </AnimatePresence>
-          {!showMaintanenceBehavior && (
-            <Button
-              variant="primary"
-              onClick={handleShowRouteOptimization}
-              className="route-optimization-btn"
-            >
-              Route Optimization
-            </Button>
-          )}
-        </Col>
-        <Col>
-          <AnimatePresence>
-            {showFleetFeed && (
-              <motion.div
-                key="evFleetFeed"
-                ref={fleetFeedRef}
-                onClick={handleCloseFleetFeed}
-                initial={{
-                  scaleX: 0,
-                  scaleY: 0,
-                  opacity: 0,
-                  transformOrigin: "top left",
-                }}
-                animate={{
-                  scaleX: 1,
-                  scaleY: 1,
-                  opacity: 1,
-                  transformOrigin: "top left",
-                }}
-                exit={{
-                  scaleX: 0,
-                  scaleY: 0,
-                  opacity: 0,
-                  transformOrigin: "top left",
-                }}
-                transition={{
-                  duration: 0.5,
-                  ease: "easeInOut",
-                }}
-                style={{
-                  position: "absolute",
-                  top: "50%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)",
-                  zIndex: 1000,
-                  backgroundColor: "white",
-                  borderRadius: 5,
-                  boxShadow: "0px 3px 10px rgba(0, 0, 0, 0.2)",
-                  padding: 20,
-                }}
-              >
-                <FleetFeed />
-              </motion.div>
-            )}
-          </AnimatePresence>
-          {!showMaintanenceBehavior && (
-            <Button
-              variant="primary"
-              onClick={handleShowFleetFeed}
-              className="fleet-feed-btn"
-            >
-              Fleet Feed
-            </Button>
-          )}
-        </Col>
-
-        <Col>
-          <AnimatePresence>
-            {showOperationsComms && (
-              <motion.div
-                key="evOperationsComms"
-                ref={operationsCommsRef}
-                onClick={handleCloseOperationsComms}
-                initial={{
-                  scaleX: 0,
-                  scaleY: 0,
-                  opacity: 0,
-                  transformOrigin: "top left",
-                }}
-                animate={{
-                  scaleX: 1,
-                  scaleY: 1,
-                  opacity: 1,
-                  transformOrigin: "top left",
-                }}
-                exit={{
-                  scaleX: 0,
-                  scaleY: 0,
-                  opacity: 0,
-                  transformOrigin: "top left",
-                }}
-                transition={{
-                  duration: 0.5,
-                  ease: "easeInOut",
-                }}
-                style={{
-                  position: "absolute",
-                  top: "50%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)",
-                  zIndex: 1000,
-                  backgroundColor: "white",
-                  borderRadius: 5,
-                  boxShadow: "0px 3px 10px rgba(0, 0, 0, 0.2)",
-                  padding: 20,
-                }}
-              >
-                <OperationsComms />
-              </motion.div>
-            )}
-          </AnimatePresence>
-          {!showOperationsComms && (
-            <Button
-              variant="primary"
-              onClick={handleShowOperationsComms}
-              className="operations-comms-btn"
-            >
-              Operations Comms
-            </Button>
-          )}
-        </Col>
-      </Row>
+                <motion.div layoutId={`card-${item.id}`}>
+                  {snapshots[item.id] ? (
+                    <Card.Img
+                      className="card-snapshot"
+                      variant="top"
+                      src={snapshots[item.id]}
+                      style={{
+                        objectFit: "contain",
+                        height: "300px",
+                        width: "400px",
+                      }}
+                    />
+                  ) : (
+                    <Card.Body>
+                      <Card.Title>{item.title}</Card.Title>
+                    </Card.Body>
+                  )}
+                </motion.div>
+              </Card>
+            </Col>
+          ))}
+        </Row>
+      </Container>
+      <AnimatePresence>
+        {selectedCard && (
+          <motion.div
+            ref={expandedCardRef}
+            className="expanded-card"
+            layoutId={`card-${selectedCard}`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            style={{
+              position: "absolute",
+              top: "10%",
+              left: "20%",
+              zIndex: 10,
+              background: "white",
+              padding: "2rem",
+              transform: "translate(-50%, -50%)",
+            }}
+          >
+            {renderCardContent()}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

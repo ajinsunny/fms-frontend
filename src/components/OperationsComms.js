@@ -1,66 +1,24 @@
-import React, { useState } from "react";
-import { Form, Dropdown } from "react-bootstrap";
+// OperationsComms.js
+import React from "react";
+import { Card } from "react-bootstrap";
+import operationsCommsImage from "./img/operationscomms.png";
+import "./OperationsComms.css";
 
 function OperationsComms(props) {
-  const [selectedItem, setSelectedItem] = useState(null);
-  const [searchTerm, setSearchTerm] = useState("");
-
-  const items = [
-    "Item 1",
-    "Item 2",
-    "Item 3",
-    "Item 4",
-    "Item 5",
-    "Item 6",
-    "Item 7",
-    "Item 8",
-    "Item 9",
-    "Item 10",
-    "Item 11",
-    "Item 12",
-    "Item 13",
-    "Item 14",
-    "Item 15",
-    "Item 16",
-    "Item 17",
-    "Item 18",
-    "Item 19",
-    "Item 20",
-  ];
-
-  const filteredItems = items.filter((item) =>
-    item.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  const handleSelect = (eventKey) => {
-    setSelectedItem(eventKey);
-  };
-
-  const handleSearch = (event) => {
-    setSearchTerm(event.target.value);
-  };
-
   return (
-    <div>
-      <Form.Group>
-        <Form.Label>Select an item:</Form.Label>
-        <Dropdown onSelect={handleSelect}>
-          <Dropdown.Toggle>{selectedItem || "Select Item"}</Dropdown.Toggle>
-          <Dropdown.Menu>
-            <Form.Control
-              type="text"
-              placeholder="Search..."
-              value={searchTerm}
-              onChange={handleSearch}
+    <div className="card-content">
+      <Card className="operations-comms-card">
+        <Card.Body className="operations-comms-card-body">
+          <div className="operations-comms-content">
+            <Card.Title>Operations Comms</Card.Title>
+            <Card.Title>Module Build in Progress</Card.Title>
+            <Card.Img
+              className="operations-comms-img"
+              src={operationsCommsImage}
             />
-            {filteredItems.map((item, index) => (
-              <Dropdown.Item key={index} eventKey={item}>
-                {item}
-              </Dropdown.Item>
-            ))}
-          </Dropdown.Menu>
-        </Dropdown>
-      </Form.Group>
+          </div>
+        </Card.Body>
+      </Card>
     </div>
   );
 }
