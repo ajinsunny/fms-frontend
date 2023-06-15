@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Row, Col, Button, Modal } from "react-bootstrap";
-import { AnimatePresence, motion } from "framer-motion/dist/framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import EVUsageStatus from "./components/EVUsageStatus";
 import EVSystemHealth from "./components/EVSystemHealth";
 import MaintanenceBehavior from "./components/MaintanenceBehavior";
