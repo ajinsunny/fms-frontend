@@ -87,7 +87,7 @@ Contributions are welcome! To contribute to this project, follow these steps:
 4.  Push your changes to the branch: `git push origin <branch-name>`.
 5.  Create a pull request on GitHub.
 
-Please make sure your code follows the project's coding style and that all tests pass before submitting a pull request.
+Please make sure your code follows the project's coding style and that all tests pass before submitting a pull request
 
 License
 -------
