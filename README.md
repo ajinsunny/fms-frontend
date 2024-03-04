@@ -9,7 +9,7 @@
 
 ![GitHub license](https://img.shields.io/github/license/ajinsunny/fms-frontend) ![GitHub issues](https://img.shields.io/github/issues/ajinsunny/fms-frontend) ![GitHub forks](https://img.shields.io/github/forks/ajinsunny/fms-frontend) ![GitHub stars](https://img.shields.io/github/stars/ajinsunny/fms-frontend)
 
-FMS Frontend is a repository containing the frontend code for the Fleet Management System (FMS) application. This project aims to provide a user-friendly interface for managing and tracking a fleet of vehicles.
+FMS Frontend is a repository containing the frontend code for the Fleet Management System (FMS) application. This project aims to provide a user-friendly interface for managing and tracking a fleet of vehicles
 
 The app is [LIVE HERE](https://main.d2tmvp8ck6o5qe.amplifyapp.com/)
 
